@@ -7,12 +7,12 @@
     <meta name="robots" content="all,follow">
     <meta name="googlebot" content="index,follow,snippet,archive">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Otara Photography Association">
-    <meta name="author" content="Vincent Zhang">
+    <meta name="description" content="Obaju e-commerce template">
+    <meta name="author" content="Ondrej Svestka | ondrejsvestka.cz">
     <meta name="keywords" content="">
 
     <title>
-        Otara Photography Association
+        Obaju : e-commerce template
     </title>
 
     <meta name="keywords" content="">
@@ -27,7 +27,7 @@
     <link href="css/owl.theme.css" rel="stylesheet">
 
     <!-- theme stylesheet -->
-    <link href="css/style.aquamarineturquoise.css" rel="stylesheet">
+    <link href="css/style.default.css" rel="stylesheet" id="theme-stylesheet">
 
     <!-- your stylesheet with modifications -->
     <link href="css/custom.css" rel="stylesheet">
@@ -45,17 +45,53 @@
  _________________________________________________________ -->
     <div id="top">
         <div class="container">
-            
-            <div class="col-md-12" data-animate="fadeInDown">
+            <div class="col-md-6 offer" data-animate="fadeInDown">
+                <a href="#" class="btn btn-success btn-sm" data-animate-hover="shake">Offer of the day</a>  <a href="#">Get flat 35% off on orders over $50!</a>
+            </div>
+            <div class="col-md-6" data-animate="fadeInDown">
                 <ul class="menu">
-                    <li><a href="#">Login</a>
+                    <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
                     </li>
                     <li><a href="register.html">Register</a>
+                    </li>
+                    <li><a href="contact.html">Contact</a>
+                    </li>
+                    <li><a href="#">Recently viewed</a>
                     </li>
                 </ul>
             </div>
         </div>
-        
+        <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="Login">Customer login</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="customer-orders.html" method="post">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="email-modal" placeholder="email">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="password-modal" placeholder="password">
+                            </div>
+
+                            <p class="text-center">
+                                <button class="btn btn-primary"><i class="fa fa-sign-in"></i> Log in</button>
+                            </p>
+
+                        </form>
+
+                        <p class="text-center text-muted">Not registered yet?</p>
+                        <p class="text-center text-muted"><a href="register.html"><strong>Register now</strong></a>! It is easy and done in 1&nbsp;minute and gives you access to special discounts and much more!</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <!-- *** TOP BAR END *** -->
@@ -67,9 +103,9 @@
         <div class="container">
             <div class="navbar-header">
 
-                <a class="navbar-brand home tpanz-logo" href="index.html" data-animate-hover="bounce">
-                    <img src="img/TPANZ-logo_s.png" alt="TPANZ logo" class="hidden-xs">
-                    </span>
+                <a class="navbar-brand home" href="index.html" data-animate-hover="bounce">
+                    <img src="img/logo.png" alt="Obaju logo" class="hidden-xs">
+                    <img src="img/logo-small.png" alt="Obaju logo" class="visible-xs"><span class="sr-only">Obaju - go to homepage</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
@@ -370,63 +406,37 @@
         <div id="content">
             <div class="container">
 
-                <div class="col-md-6">
-                    <div class="box">
-                        <h1>New account</h1>
+                <div class="col-md-12">
 
-                        <p class="lead">Not our registered customer yet?</p>
-                        <p>With registration with us new world of fashion, fantastic discounts and much more opens to you! The whole process will not take you more than a minute!</p>
-                        <p class="text-muted">If you have any questions, please feel free to <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.</p>
+                    <ul class="breadcrumb">
+                        <li><a href="#">Home</a>
+                        </li>
+                        <li>Page not found</li>
+                    </ul>
 
-                        <hr>
 
-                        <form action="customer-orders.html" method="post">
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" class="form-control" id="name">
+                    <div class="row" id="error-page">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <div class="box">
+
+                                <p class="text-center">
+                                    <img src="img/logo.png" alt="Obaju template">
+                                </p>
+
+                                <h3>We are sorry - this page is not here anymore</h3>
+                                <h4 class="text-muted">Error 404 - Page not found</h4>
+
+                                <p class="text-center">To continue please use the <strong>Search form</strong> or <strong>Menu</strong> above.</p>
+
+                                <p class="buttons"><a href="index.html" class="btn btn-primary"><i class="fa fa-home"></i> Go to Homepage</a>
+                                </p>
                             </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="text" class="form-control" id="email">
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password">
-                            </div>
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-user-md"></i> Register</button>
-                            </div>
-                        </form>
+                        </div>
                     </div>
+
+
                 </div>
-
-                <div class="col-md-6">
-                    <div class="box">
-                        <h1>Login</h1>
-
-                        <p class="lead">Already our customer?</p>
-                        <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies
-                            mi vitae est. Mauris placerat eleifend leo.</p>
-
-                        <hr>
-
-                        <form action="customer-orders.html" method="post">
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="text" class="form-control" id="email">
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password">
-                            </div>
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Log in</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-
+                <!-- /.col-md-9 -->
             </div>
             <!-- /.container -->
         </div>
@@ -591,6 +601,7 @@
 
 
 
+
     </div>
     <!-- /#all -->
 
@@ -607,6 +618,7 @@
     <script src="js/bootstrap-hover-dropdown.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/front.js"></script>
+
 
 
 
