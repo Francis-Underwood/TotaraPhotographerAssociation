@@ -1,0 +1,5 @@
+ALTER TABLE [dbo].[Product] DROP CONSTRAINT [PK_Product]
+go
+
+ALTER TABLE [dbo].[Product] ADD CONSTRAINT [PK_Product] 
+    PRIMARY KEY NONCLUSTERED ([Id])

@@ -14,6 +14,13 @@ namespace TotaraPhotographyAssociation
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "ProductDetail",
+                url: "NewProduct/Detail/{id}",
+                defaults: new { controller = "NewProduct", action = "Detail", id = "" },
+                namespaces: new[] { "TeAwaOnlineArtworkAuction.Controllers" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },

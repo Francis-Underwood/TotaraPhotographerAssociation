@@ -1,7 +1,62 @@
-﻿
+﻿@using TotaraPhotographyAssociation.Models
+@model List<Product>
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "New Cameras";
+    //var urlHelper = new UrlHelper(htmlHelper.ViewContext.RequestContext);
 }
 
-<h2>New Products</h2>
+<div class="col-md-12">
 
+    <div class="row products">
+
+        @if (Model != null && Model.Count() > 0)
+        {
+            foreach (var c in Model)
+            {
+
+                <div class="col-md-3 col-sm-4">
+                    <div class="product">
+                        <div class="flip-container">
+                            <div class="flipper">
+                                <div class="front">
+                                    <a href="@Url.Action("About", "Home", null, null)">
+                                        <img src="~/Images/@c.PhotoFilePath" alt="" class="img-responsive">
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <a href="detail.html" class="invisible">
+                            <img src="~/Images/@c.PhotoFilePath" alt="" class="img-responsive">
+                        </a>
+                        <div class="text">
+                            <h3><a href="detail.html">@c.Name</a></h3>
+                            <p class="price">@c.Price.ToString("c")</p>
+                            <p class="buttons">
+                                <a href="detail.html" class="btn btn-default">View detail</a>
+                                <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                            </p>
+                        </div>
+                        <!-- /.text -->
+                    </div>
+                    <!-- /.product -->
+                </div>
+
+
+
+
+            }
+        }
+
+
+        
+
+
+
+
+    </div>
+    <!-- /.products -->
+
+</div>
+<!-- /.col-md-9 -->
