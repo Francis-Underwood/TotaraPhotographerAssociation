@@ -1,7 +1,149 @@
-﻿
+﻿@model TotaraPhotographyAssociation.Models.CartIndexViewModel
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "My Cart";
+    var totalDis = Model.Cart.ComputeTotalValue() * 0.05m;
+    var total = Model.Cart.ComputeTotalValue() * (1 - 0.05m);
 }
 
-<h2>Shopping Cart</h2>
+<div class="col-md-9" id="basket">
+
+    <div class="box">
+
+        @if (Model != null && Model.Cart.Lines.Count() > 0)
+        {
+
+            using (
+                Html.BeginForm("UpdateCart", "Cart", FormMethod.Post, new { id = "cartForm" })
+            )
+            {
+                <input type="hidden" name="checkoutMarker" id="checkoutMarker" value="0" />
+
+                <h1>Shopping cart</h1>
+                <p class="text-muted">You currently have @Model.Cart.Lines.Count() item(s) in your cart.</p>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th colspan="2">Product</th>
+                                <th>Quantity</th>
+                                <th>Unit price</th>
+                                <th>Discount</th>
+                                <th colspan="2">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var line in Model.Cart.Lines)
+                            {
+                                var discnt = line.Product.Price * line.Quantity * 0.05m;
+                                var realPrice = line.Product.Price * line.Quantity * (1-0.05m);
+                                <tr>
+                                    <td>
+                                        <a href="@Url.Action("Detail", "NewProduct", new { prdId = line.Product.Id })">
+                                            <img src="~/Images/@line.Product.PhotoFilePath" alt="@line.Product.Name">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("Detail", "NewProduct", new { prdId = line.Product.Id })">@line.Product.Name</a>
+                                    </td>
+                                    <td>
+                                        <input name="@line.Product.Id" type="number" value="@line.Quantity" class="form-control">
+                                    </td>
+                                    <td>@line.Product.Price.ToString("c")</td>
+                                    <td>@discnt.ToString("c")</td>
+                                    <td>@realPrice.ToString("c")</td>
+                                    <td>
+                                        <a href="@Url.Action("RemoveFromCart", "Cart", new { prdId = line.Product.Id })"><i class="fa fa-trash-o"></i></a>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="5">Total</th>
+                                <th colspan="2">@total.ToString("c")</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                </div>
+                <!-- /.table-responsive -->
+
+                <div class="box-footer">
+                    <div class="pull-left">
+                        <a href="@Url.Action("Index", "NewProduct")" class="btn btn-default"><i class="fa fa-chevron-left"></i> Continue shopping</a>
+                    </div>
+                    <div class="pull-right">
+                        <button type="submit" class="btn btn-default"><i class="fa fa-refresh"></i> Update basket</button>
+                        <button type="submit" class="btn btn-primary" onclick="checkOutCart()">
+                            Proceed to checkout <i class="fa fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+            }
+
+
+        }
+        else
+        {
+            <div class="alert alert-danger">
+                <p>You cart is empty.</p>
+            </div>
+        }
+
+
+
+    </div>
+    <!-- /.box -->
+
+
+</div>
+
+
+<div class="col-md-3">
+    <div class="box" id="order-summary">
+        <div class="box-header">
+            <h3>Order summary</h3>
+        </div>
+        <p class="text-muted">Discounts are calculated based on the user group you belong to.</p>
+
+@if (Model != null && Model.Cart.Lines.Count() > 0)
+{
+        <div class="table-responsive">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>Order subtotal</td>
+                        <th>@Model.Cart.ComputeTotalValue().ToString("c")</th>
+                    </tr>
+                    <tr>
+                        <td>Total Discount</td>
+                        <th>@totalDis.ToString("c")</th>
+                    </tr>
+                    <tr>
+                        <td>Tax</td>
+                        <th>$0.00</th>
+                    </tr>
+                    <tr class="total">
+                        <td>Total</td>
+                        <th>@total.ToString("c")</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+}
+    </div>
+
+
+</div>
+
+<script>
+    function checkOutCart() {
+        
+        document.getElementById('checkoutMarker').value = "1";
+        //document.getElementById('cartForm').submit();
+    }
+</script>
 

@@ -20,7 +20,7 @@
                         <div class="flip-container">
                             <div class="flipper">
                                 <div class="front">
-                                    <a href="@Url.Action("About", "Home", null, null)">
+                                    <a href="@Url.Action("Detail", "NewProduct", new { prdId = c.Id })">
                                         <img src="~/Images/@c.PhotoFilePath" alt="" class="img-responsive">
                                     </a>
                                 </div>
@@ -31,12 +31,20 @@
                             <img src="~/Images/@c.PhotoFilePath" alt="" class="img-responsive">
                         </a>
                         <div class="text">
-                            <h3><a href="detail.html">@c.Name</a></h3>
+                            <h3><a href="@Url.Action("Detail", "NewProduct", new { prdId = c.Id })">@c.Name</a></h3>
                             <p class="price">@c.Price.ToString("c")</p>
-                            <p class="buttons">
-                                <a href="detail.html" class="btn btn-default">View detail</a>
-                                <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                            </p>
+                            <div class="buttons" style="margin-bottom: 20px">
+                                <a href="@Url.Action("Detail", "NewProduct", new { prdId = c.Id })" class="btn btn-default">View detail</a>
+                                @using (
+                                    Html.BeginForm("AddToCart", "Cart", FormMethod.Post, new {style = "display:inline;"})
+                                 )
+                                {
+                                    <input type="hidden" name="prdId" value="@c.Id"/>
+                                    <input type="hidden" name="rtnUrl" value="@Request.Url.PathAndQuery" />
+                                    <a href="javascript:void(0);" onclick="addToCart(this)" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+
+                                }
+                            </div>
                         </div>
                         <!-- /.text -->
                     </div>
@@ -45,12 +53,11 @@
 
 
 
-
             }
         }
 
 
-        
+
 
 
 
@@ -58,5 +65,15 @@
     </div>
     <!-- /.products -->
 
+
+
 </div>
 <!-- /.col-md-9 -->
+
+
+
+<script>
+    function addToCart(prd) {
+        prd.parentNode.submit();
+    }
+</script>

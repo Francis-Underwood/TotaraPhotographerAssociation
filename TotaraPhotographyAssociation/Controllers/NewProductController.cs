@@ -19,16 +19,16 @@ namespace TotaraPhotographyAssociation.Controllers
             return View(products);
         }
 
-        public ActionResult Detail(string id = "")
+        public ActionResult Detail(string prdId = "")
         {
-            if (string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(prdId))
             {
                 return View();
             }
             else
             {
                 Product p = (from prd in this.dbCnxt.Products
-                             where prd.Id == id
+                             where prd.Id == prdId
                              select prd).FirstOrDefault();
                 return View(p);
             }

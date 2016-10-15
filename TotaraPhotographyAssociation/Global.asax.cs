@@ -6,6 +6,8 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using TotaraPhotographyAssociation.DomainEntities;
+using TotaraPhotographyAssociation.Binders;
 
 namespace TotaraPhotographyAssociation
 {
@@ -18,6 +20,7 @@ namespace TotaraPhotographyAssociation
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            ModelBinders.Binders.Add(typeof(Cart), new CartModelBinder());
         }
     }
 }

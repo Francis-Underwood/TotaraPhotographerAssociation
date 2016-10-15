@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using TotaraPhotographyAssociation.DomainEntities;
 
 namespace TotaraPhotographyAssociation.Models
 {
@@ -109,4 +110,12 @@ namespace TotaraPhotographyAssociation.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
+
+    // Vincent: ViewModel that carries data for Cart/Index view
+    public class CartIndexViewModel
+    {
+        public Cart Cart { get; set; }
+        public string ReturnUrl { get; set; }
+    }
+
 }
