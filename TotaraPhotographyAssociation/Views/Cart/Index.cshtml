@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "My Cart";
-    var totalDis = Model.Cart.ComputeTotalValue() * 0.05m;
+    var totalDis = Model.Cart.ComputeTotalValue() * 0.05m; // grab discount from user role
     var total = Model.Cart.ComputeTotalValue() * (1 - 0.05m);
 }
 

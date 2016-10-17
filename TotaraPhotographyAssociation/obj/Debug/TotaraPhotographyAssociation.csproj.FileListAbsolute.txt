@@ -73,3 +73,5 @@ D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\obj\Debug\TotaraPhotographyAssociation.csprojResolveAssemblyReference.cache
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\obj\Debug\TotaraPhotographyAssociation.dll
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\obj\Debug\TotaraPhotographyAssociation.pdb
+D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\bin\PayPal.dll
+D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\bin\PayPal.xml
