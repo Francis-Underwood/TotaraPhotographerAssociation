@@ -18,10 +18,10 @@ namespace TotaraPhotographyAssociation.Services
 
         public static Payment CreatePayment(string baseUrl, string intent)
         { 
-            var apiContext = PayPalConfiguration.GetAPIContext();
+            APIContext apiContext = PayPalConfiguration.GetAPIContext();
 
             // Payment Resource
-            var payment = new Payment()
+            Payment payment = new Payment()
             {
                 intent = intent,    // `sale` or `authorize`
                 payer = new Payer() { payment_method = "paypal" },
@@ -29,10 +29,18 @@ namespace TotaraPhotographyAssociation.Services
                 redirect_urls = GetReturnUrls(baseUrl, intent)
             };
 
-            // Create a payment using a valid APIContext
-            var createdPayment = payment.Create(apiContext);
+            try
+            {
+                // Create a payment using a valid APIContext
+                Payment createdPayment = payment.Create(apiContext);
+                return createdPayment;
+            }
+            catch (PayPal.PayPalException ex)
+            {
+                //Logger.Log("Error: " + ex.Message);
+                throw new Exception("Navigating to Paypal failed");
+            }
 
-            return createdPayment;
         }
 
 
@@ -40,17 +48,22 @@ namespace TotaraPhotographyAssociation.Services
         private static List<Transaction> GetTransactionsList()
         {
             decimal discountedAmount = cart.ComputeTotalValue();
-         
+
+            // for test
+            //discountedAmount = 3.00m;
+
             // A transaction defines the contract of a payment
             // what is the payment for and who is fulfilling it. 
             var transactionList = new List<Transaction>();
 
 
             ItemList itemlist = new ItemList();
+            itemlist.items = new List<Item>();
 
-            foreach(var line in cart.Lines)
+            foreach (var line in cart.Lines)
             {
                 Item i = new Item();
+                
                 i.name = line.Product.Name;
                 i.currency = "NZD";
                 i.price = line.Product.Price.ToString("#0.00");
@@ -66,7 +79,7 @@ namespace TotaraPhotographyAssociation.Services
                 new Transaction()
                 {
                     description = "Payment of transaction from Totara Photographer Association.",
-                    invoice_number = "XXXXXXXXXXXXXX", // TODO: 
+                    invoice_number = new Random().Next(999999).ToString(), // TODO:, // TODO: 
                     amount = new Amount()
                     {
                         currency = "NZD",
@@ -76,15 +89,11 @@ namespace TotaraPhotographyAssociation.Services
                             tax = "0",
                             shipping = "0",
                             subtotal = discountedAmount.ToString("#0.00")
+                            //subtotal = "3.00" // for testing
                         }
                     },
                     // grab from session
-
-
-
                     item_list = itemlist
-
-
                 }
             );
 

@@ -204,8 +204,14 @@
       <DependentUpon>TotaraPhotoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CreateOrderViewModel.cs" />
+    <Compile Include="Models\CustomerOrder.cs">
+      <DependentUpon>TotaraPhotoModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\OrderDetail.cs">
+      <DependentUpon>TotaraPhotoModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Product.cs">
       <DependentUpon>TotaraPhotoModel.tt</DependentUpon>
     </Compile>
@@ -327,6 +333,7 @@
     <Content Include="Views\Cart\Summary.cshtml" />
     <Content Include="Views\Cart\CheckOut.cshtml" />
     <Content Include="Views\Order\Create.cshtml" />
+    <Content Include="Views\Order\PaymentSuccessful.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

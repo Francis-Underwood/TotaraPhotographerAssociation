@@ -27,5 +27,7 @@ namespace TotaraPhotographyAssociation.Models
     
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
+        public virtual DbSet<CustomerOrder> CustomerOrders { get; set; }
     }
 }

@@ -30,7 +30,7 @@ namespace TotaraPhotographyAssociation.Models
         [Display(Name = "Shipping Address Line1")]
         public string DeliveryAddressLine_1 { get; set; }
 
-        [Required]
+        
         [Display(Name = "Shipping Address Line2")]
         public string DeliveryAddressLine_2 { get; set; }
 
