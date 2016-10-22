@@ -101,6 +101,30 @@ namespace TotaraPhotographyAssociation.Services
         }
 
 
+        public static Payment ExecutePayment(string paymentId, string payerId)
+        {
+            var apiContext = PayPalConfiguration.GetAPIContext();
+
+            var paymentExecution = new PaymentExecution() { payer_id = payerId };
+            var payment = new Payment() { id = paymentId };
+
+            // Execute the payment
+            Payment executedPayment = null;
+            try
+            {
+                executedPayment = payment.Execute(apiContext, paymentExecution);
+
+                var sale = Sale.Get(apiContext, paymentId);
+            }
+            catch(Exception ex)
+            {
+                // log
+                return executedPayment;
+            }
+
+            return executedPayment;
+        }
+
 
 
         private static RedirectUrls GetReturnUrls(string baseUrl, string intent)

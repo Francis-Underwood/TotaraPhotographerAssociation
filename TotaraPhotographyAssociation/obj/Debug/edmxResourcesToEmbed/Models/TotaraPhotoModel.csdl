@@ -34,6 +34,8 @@
     <EntitySet Name="Products" EntityType="Self.Product" />
     <EntitySet Name="OrderDetails" EntityType="TotaraPhotoModel.OrderDetail" />
     <EntitySet Name="CustomerOrders" EntityType="TotaraPhotoModel.CustomerOrder" />
+    <EntitySet Name="SysParams" EntityType="TotaraPhotoModel.SysParam" />
+    <EntitySet Name="Resources" EntityType="TotaraPhotoModel.Resource" />
   </EntityContainer>
   <EntityType Name="OrderDetail">
     <Key>
@@ -63,5 +65,21 @@
     <Property Name="OrderStatus" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="PaypalPaymentId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SysParam">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ParaName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ParaVal" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Resource">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FileName" Type="String" Nullable="false" MaxLength="56" FixedLength="false" Unicode="true" />
+    <Property Name="Title" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

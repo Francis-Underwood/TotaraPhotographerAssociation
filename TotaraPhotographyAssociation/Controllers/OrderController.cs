@@ -126,8 +126,8 @@ namespace TotaraPhotographyAssociation.Controllers
         public ActionResult PaymentSuccessful(string paymentId, string token, string PayerID)
         {
             // Execute Payment
-            //var payment = PayPalPaymentService.ExecutePayment(paymentId, PayerID);
-
+            var payment = PayPalPaymentService.ExecutePayment(paymentId, PayerID);
+//
             // clear cart
             if (Session != null && Session["cart"] != null)
             {

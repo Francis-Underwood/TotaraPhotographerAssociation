@@ -62,7 +62,7 @@ namespace TotaraPhotographyAssociation.Controllers
             if (Request["checkoutMarker"] != null)
             {
                 if (Request["checkoutMarker"] == "1")
-                    return RedirectToAction("CheckOut", "Cart");
+                    return RedirectToAction("Create", "Order");
             }
 
             return RedirectToAction("Index", "Cart");
@@ -81,12 +81,12 @@ namespace TotaraPhotographyAssociation.Controllers
             return RedirectToAction("Index", "Cart");
         }
 
-
+        /*
         public ActionResult CheckOut(Cart cart)
         {
             return View();
         }
-
+        */
 
     }
 }

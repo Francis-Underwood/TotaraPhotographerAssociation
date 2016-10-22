@@ -63,11 +63,29 @@
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
           <Property Name="BigPhotoFilePath" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Resource">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="56" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="SysParam">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParaName" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="ParaVal" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="TotaraPhotoModelStoreContainer">
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerOrder" EntityType="Self.CustomerOrder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Resource" EntityType="Self.Resource" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysParam" EntityType="Self.SysParam" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -107,6 +125,8 @@
           <EntitySet Name="Products" EntityType="Self.Product" />
           <EntitySet Name="OrderDetails" EntityType="TotaraPhotoModel.OrderDetail" />
           <EntitySet Name="CustomerOrders" EntityType="TotaraPhotoModel.CustomerOrder" />
+          <EntitySet Name="SysParams" EntityType="TotaraPhotoModel.SysParam" />
+          <EntitySet Name="Resources" EntityType="TotaraPhotoModel.Resource" />
         </EntityContainer>
         <EntityType Name="OrderDetail">
           <Key>
@@ -136,6 +156,22 @@
           <Property Name="OrderStatus" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="PaypalPaymentId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SysParam">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParaName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ParaVal" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Resource">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="56" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -200,6 +236,24 @@
                 <ScalarProperty Name="ShippingEmail" ColumnName="ShippingEmail" />
                 <ScalarProperty Name="ShippingLastName" ColumnName="ShippingLastName" />
                 <ScalarProperty Name="ShippingFirstName" ColumnName="ShippingFirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysParams">
+            <EntityTypeMapping TypeName="TotaraPhotoModel.SysParam">
+              <MappingFragment StoreEntitySet="SysParam">
+                <ScalarProperty Name="ParaVal" ColumnName="ParaVal" />
+                <ScalarProperty Name="ParaName" ColumnName="ParaName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Resources">
+            <EntityTypeMapping TypeName="TotaraPhotoModel.Resource">
+              <MappingFragment StoreEntitySet="Resource">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

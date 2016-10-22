@@ -9,6 +9,8 @@
         <EntityTypeShape EntityType="TotaraPhotoModel.Product" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TotaraPhotoModel.OrderDetail" Width="1.5" PointX="5.375" PointY="0.75" />
         <EntityTypeShape EntityType="TotaraPhotoModel.CustomerOrder" Width="1.5" PointX="3.375" PointY="4.75" />
+        <EntityTypeShape EntityType="TotaraPhotoModel.SysParam" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="TotaraPhotoModel.Resource" Width="1.5" PointX="5.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

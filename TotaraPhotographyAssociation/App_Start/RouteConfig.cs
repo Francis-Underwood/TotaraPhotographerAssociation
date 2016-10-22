@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using TotaraPhotographyAssociation.RouteHandlers;
 
 namespace TotaraPhotographyAssociation
 {
@@ -13,11 +14,15 @@ namespace TotaraPhotographyAssociation
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.Add("PDFRoute", new Route("ResFiles/{filename}", new PDFRouteHandler()));
+
+            
+
             routes.MapRoute(
                 name: "ProductDetail",
                 url: "NewProduct/Detail/{prdId}",
                 defaults: new { controller = "NewProduct", action = "Detail", prdId = "" },
-                namespaces: new[] { "TeAwaOnlineArtworkAuction.Controllers" }
+                namespaces: new[] { "TotaraPhotographyAssociation.Controllers" }
             );
 
             routes.MapRoute(

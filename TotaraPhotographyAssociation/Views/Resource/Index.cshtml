@@ -1,8 +1,37 @@
-﻿
+﻿@using TotaraPhotographyAssociation.Models
+@model List<Resource>
+
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Resource</h2>
+<div class="col-md-12">
 
-<h3>Whitepapers</h3>
+
+
+    <div class="box" id="text-page">
+        <h1>WHITE PAPERS & GUIDELINES</h1>
+
+        
+
+
+        @if (Model != null && Model.Count() != 0)
+        {
+            foreach (var r in Model)
+            {
+                <p>
+                    @Html.ActionLink(@r.Title, "DisplayPDF", new { id = @r.Id })
+                    <br/>
+                    Adobe Acrobat PDF
+                </p>
+                
+            }
+
+        }
+
+
+    </div>
+
+
+</div>
+<!-- /.col-md-12 -->

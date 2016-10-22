@@ -58,10 +58,28 @@
     <Property Name="IsDeleted" Type="bit" Nullable="false" />
     <Property Name="BigPhotoFilePath" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="Resource">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FileName" Type="nvarchar" MaxLength="56" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="SysParam">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ParaName" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ParaVal" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
   <EntityContainer Name="TotaraPhotoModelStoreContainer">
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CustomerOrder" EntityType="Self.CustomerOrder" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Resource" EntityType="Self.Resource" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SysParam" EntityType="Self.SysParam" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>
