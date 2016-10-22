@@ -15,9 +15,19 @@ namespace TotaraPhotographyAssociation
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             //routes.Add("PDFRoute", new Route("ResFiles/{filename}", new PDFRouteHandler()));
-            routes.IgnoreRoute("{*allpdf}", new { allpdf = @".*\.pdf(/.*)?" });
+            //routes.IgnoreRoute("{*allpdf}", new { allpdf = @".*\.pdf(/.*)?" });
 
-            routes.IgnoreRoute("{file}.pdf");
+            //routes.IgnoreRoute("{file}.pdf");
+
+            /**/
+            routes.RouteExistingFiles = true;
+
+            routes.MapRoute(
+                name: "WhitePapers",
+                url: "{file}.pdf",
+                defaults: new { controller = "Resource", action = "Badboy", file = UrlParameter.Optional }
+            );
+            
 
             routes.MapRoute(
                 name: "ProductDetail",

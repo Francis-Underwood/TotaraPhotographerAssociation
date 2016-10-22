@@ -344,6 +344,7 @@
     <Content Include="Views\Order\PaymentSuccessful.cshtml" />
     <Content Include="Views\Home\EditAbout.cshtml" />
     <Content Include="ResFiles\Clendons_NZPhotography.pdf" />
+    <Content Include="Views\Resource\Badboy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

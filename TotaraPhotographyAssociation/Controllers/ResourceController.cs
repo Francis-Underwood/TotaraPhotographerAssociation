@@ -38,6 +38,12 @@ namespace TotaraPhotographyAssociation.Controllers
         }
 
 
+        public ActionResult Badboy(string file)
+        {
+            ViewBag.File = file;
+            return View();
+        }
+
 
     }
 }
