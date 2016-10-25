@@ -111,6 +111,11 @@
                     <li class="@((ctrllerName == "cart" && actName == "index") ? "active" : "dropdown")">
                         @Html.ActionLink("Cart", "Index", "Cart", null, new { @class = "dropdown-toggle", data_hover = "dropdown", data_delay = "200" })
                     </li>
+
+                    <li class="@((ctrllerName == "Membership" && actName == "index") ? "active" : "dropdown")">
+                        @Html.ActionLink("Membership", "Index", "Membership", null, new { @class = "dropdown-toggle", data_hover = "dropdown", data_delay = "200" })
+                    </li>
+
                 </ul>
 
             </div>

@@ -1,0 +1,55 @@
+﻿@model TotaraPhotographyAssociation.Models.MembershipViewModel
+
+@{
+    ViewBag.Title = "Membership overview";
+}
+
+<div class="col-md-12">
+
+    <div class="box" style="min-height: 448px">
+        <h1>@ViewBag.Title</h1>
+
+        @switch (Model.Role)
+        {
+            case "inactive":
+                <p class="lead">
+                    You have not subscribed any membership yet. Choose one from below plans:
+                    <br/>
+                    <a href="@Url.Action("Subscribe", "Membership", new { plan = "associate" })" class="external">Associate Membership Plan: $15 per year</a>
+                    <br />
+                    <a href="@Url.Action("Subscribe", "Membership", new { plan = "full" })" class="external">Full Membership Plan: $25 per year</a>
+                </p>
+                break;
+
+            case "expired":
+                <p class="lead">
+                    Your previous subscription has expired. Choose one from below plans to extend it:
+                    <br />
+                    <a href="@Url.Action("Subscribe", "Membership", new { plan = "associate" })" class="external">Associate Membership Plan: $15 per year</a>
+                    <br />
+                    <a href="@Url.Action("Subscribe", "Membership", new { plan = "full" })" class="external">Full Membership Plan: $25 per year</a>
+                </p>
+                break;
+
+            case "associate":
+                <p class="lead">
+                    You are currently holding associate membership.
+                </p>
+                break;
+
+            case "full":
+                <p class="lead">
+                    You are currently holding full membership.
+                </p>
+                break;
+
+            default:
+                break;
+        }
+
+
+    </div>
+
+
+</div>
+<!-- /.col-md-12 -->

@@ -25,5 +25,6 @@ namespace TotaraPhotographyAssociation.Models
         public string OrderStatus { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public string PaypalPaymentId { get; set; }
+        public string CustomerId { get; set; }
     }
 }

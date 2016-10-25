@@ -79,7 +79,17 @@ namespace TotaraPhotographyAssociation.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    //return RedirectToLocal(returnUrl);
+
+                    // Vincent: remove the default behavior, because after user login, the system
+                    // needs to check user membership against expiry, in the case membership has expired
+                    // this is the only proper point to redirect to membership page, and it is difficulty
+                    // to distingush the two different cases: expires, and not does not expire.
+                    // for simplicity, in both cases user will be redirected to membership page 
+                    return RedirectToAction("Index", "Membership");
+
+
+
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -159,7 +169,7 @@ namespace TotaraPhotographyAssociation.Controllers
                     var u = UserManager.FindByEmail(model.Email);
                     //IdentityResult roleAsgmtResult = await UserManager.AddToRoleAsync(u.Id, "associate");    // TODO: can be improved rather than hard-code?
 
-                    IdentityResult roleAsgmtResult = await UserManager.AddToRoleAsync(u.Id, "full");
+                    IdentityResult roleAsgmtResult = await UserManager.AddToRoleAsync(u.Id, "inactive");
 
                     if (roleAsgmtResult.Succeeded)
                     {
@@ -171,9 +181,14 @@ namespace TotaraPhotographyAssociation.Controllers
                         // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                         // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                        return RedirectToAction("Index", "Home");
+                        //return RedirectToAction("Index", "Home");
+                        // Vincent: after signing up, user is assigned 'inactive',
+                        // they are redirected to membership page
+                        // to choose a membership plan
+                        return RedirectToAction("Index", "Membership");
+
                     }
-                       
+
                 }
                 AddErrors(result);
             }

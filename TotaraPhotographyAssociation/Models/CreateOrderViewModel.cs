@@ -42,4 +42,19 @@ namespace TotaraPhotographyAssociation.Models
         public string CartLoaded { get; set; }
 
     }
+
+
+    public class MembershipViewModel
+    {
+        public string Role { get; set; }
+        public Nullable<DateTime> ExpiryDate { get; set; }
+    }
+
+
+    public class PurchaseMembershipViewModel
+    {
+        public string Placeholder { get; set; }
+    }
+
+
 }

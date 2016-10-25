@@ -1,0 +1,69 @@
+﻿@using TotaraPhotographyAssociation.Models
+
+@model Product
+
+@{
+    ViewBag.Title = "New Product Detail";
+}
+
+<div class="col-md-12">
+    @if (Model != null)
+    {
+
+        <div class="row" id="productMain">
+
+            <div class="col-sm-6">
+                <div id="mainImage">
+                    <img src="~/Images/@Model.BigPhotoFilePath" alt="" class="img-responsive">
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="box">
+
+                    @using (
+                        Html.BeginForm("AddToCart", "Cart", FormMethod.Post, new { style = "display:inline;" })
+                    )
+                    {
+                        <input type="hidden" name="prdId" value="@Model.Id" />
+                        <input type="hidden" name="rtnUrl" value="@Request.Url.PathAndQuery" />
+
+                        <h1 class="text-center">@Model.Name</h1>
+                        <p class="price">@Model.Price.ToString("c")</p>
+                        <p class="text-center">
+                            <input name="qty" value="1" class="col-sm-offset-5 form-control" type="number" style="width: 14%">
+                        </p>
+                        <p class="text-center buttons">
+                            <a href="javascript:void(0);" onclick="addToCart(this)" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                        </p>
+
+                    }
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="box" id="details">
+            <h4>Product description</h4>
+            <p>@Model.Description</p>
+        </div>
+
+    }
+    else
+    {
+        <div class="alert alert-danger">
+            <p>The product could not be found.</p>
+        </div>
+    }
+
+
+</div>
+<!-- /.col-md-9 -->
+
+<script>
+    function addToCart(prd) {
+        prd.parentNode.parentNode.submit();
+    }
+</script>

@@ -47,7 +47,7 @@ namespace TotaraPhotographyAssociation.Services
 
         private static List<Transaction> GetTransactionsList()
         {
-            decimal discountedAmount = cart.ComputeTotalValue();
+            decimal discountedAmount = cart.ComputeTotalValue() * discount;
 
             // for test
             //discountedAmount = 3.00m;

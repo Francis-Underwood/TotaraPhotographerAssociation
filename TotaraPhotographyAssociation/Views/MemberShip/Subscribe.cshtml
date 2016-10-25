@@ -1,0 +1,50 @@
+﻿@model TotaraPhotographyAssociation.Models.PurchaseMembershipViewModel
+
+@{
+    ViewBag.Title = "Subscribe";
+    var p = ViewBag.Plan;
+    decimal price = 0.00m;
+    if (p== "associate")
+    {
+        price = 15.00m;
+    }
+    else if (p == "full")
+    {
+        price = 25.00m;
+    }
+}
+
+<div class="col-md-6 col-sm-offset-3">
+    <div class="box" style="min-height: 448px">
+        <h1>@ViewBag.Title</h1>
+
+
+        <section>
+            @using (Html.BeginForm("Subscribe", "Membership", FormMethod.Post))
+            {
+
+                @Html.AntiForgeryToken()
+
+                <input type="hidden" name="plan" value="@p" />
+
+                <hr />
+
+                <p>
+                    You are going to subscribe @p membership, it costs @price.ToString("#0.00"). Please click the Confirm button, and you will go to Paypal to settle the payment.
+                </p>
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+                <div class="text-center">
+                    <input type="submit" value="Confirm" class="btn btn-primary" />
+                </div>
+
+
+            }
+        </section>
+
+
+    </div>
+</div>

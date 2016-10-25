@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using Microsoft.AspNet.Identity;
 using PayPal.Api;
 using TotaraPhotographyAssociation.Models;
 using TotaraPhotographyAssociation.DomainEntities;
@@ -61,6 +61,7 @@ namespace TotaraPhotographyAssociation.Controllers
                             o.DeliveryAddressLine2 = vmodel.DeliveryAddressLine_2;
                             o.OrderStatus = "nonpaid";
                             o.CreatedDate = DateTime.Now;
+                            o.CustomerId = User.Identity.GetUserId();   // TODO: check
 
                             dbCnxt.CustomerOrders.Add(o);
 
@@ -84,6 +85,9 @@ namespace TotaraPhotographyAssociation.Controllers
                             dbCnxt.SaveChanges();
 
                             dbContextTransaction.Commit();
+
+                            Session["orderid"] = orderID;
+
                         }
                         catch (Exception ex)
                         {
@@ -98,7 +102,7 @@ namespace TotaraPhotographyAssociation.Controllers
                     {
                         // go to Paypal
                         PayPalPaymentService.cart = cart;
-                        PayPalPaymentService.discount = 1 - 0.10m;  // TODO:
+                        PayPalPaymentService.discount = 1 - 0.10m;  // TODO: get it from db
                         PayPalPaymentService.orderId = orderID;
                         // pass discount
 
@@ -114,7 +118,7 @@ namespace TotaraPhotographyAssociation.Controllers
                         }
                     }
 
-                    
+
                 }
             }
 
@@ -127,21 +131,35 @@ namespace TotaraPhotographyAssociation.Controllers
         {
             // Execute Payment
             var payment = PayPalPaymentService.ExecutePayment(paymentId, PayerID);
+            
 //
+            if (Session != null && Session["orderid"] != null)
+            {
+                string orderID = Session["orderid"].ToString();
+
+                CustomerOrder o = (from co in this.dbCnxt.CustomerOrders
+                                   where co.Id == orderID
+                                   select co).FirstOrDefault();
+                o.OrderStatus = "paid";
+                o.PaypalPaymentId = paymentId;
+                this.dbCnxt.SaveChanges();
+
+            }
+
             // clear cart
             if (Session != null && Session["cart"] != null)
             {
                 Cart c = (Cart)Session["cart"];
                 c.Clear();
             }
-            
+
             return View();
         }
 
         public ActionResult PaymentCancelled()
         {
-            // TODO: Handle cancelled payment
-            return RedirectToAction("Error");
+            //return RedirectToAction("Error");
+            return View();
         }
 
 

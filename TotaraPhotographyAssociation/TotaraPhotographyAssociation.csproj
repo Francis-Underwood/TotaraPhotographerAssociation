@@ -192,6 +192,7 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MembershipController.cs" />
     <Compile Include="Controllers\NewProductController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ResourceController.cs" />
@@ -201,7 +202,13 @@
     </Compile>
     <Compile Include="HttpHandlers\PDFHandler.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AspNetRole.cs">
+      <DependentUpon>TotaraPhotoModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\AspNetUser.cs">
+      <DependentUpon>TotaraPhotoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserRole.cs">
       <DependentUpon>TotaraPhotoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CreateOrderViewModel.cs" />
@@ -241,6 +248,7 @@
     <Compile Include="RouteHandlers\PDFRouteHandler.cs" />
     <Compile Include="Services\PayPalConfiguration.cs" />
     <Compile Include="Services\PayPalPaymentService.cs" />
+    <Compile Include="Services\PPPSMembership.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -249,6 +257,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\custom.css" />
     <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\fonts\flexslider-icon.svg" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\owl.carousel.css" />
     <Content Include="Content\owl.theme.css" />
     <Content Include="Content\owl.transitions.css" />
@@ -258,7 +268,15 @@
     <Content Include="Global.asax" />
     <Content Include="Areas\admin\Views\web.config" />
     <Content Include="Areas\admin\Views\Home\Index.cshtml" />
+    <Content Include="Images\Canon_EOS_5D_Mark_III.jpg" />
+    <Content Include="Images\eos5d.jpg" />
+    <Content Include="Images\hass.jpg" />
+    <Content Include="Images\phase.jpg" />
+    <Content Include="Images\phaseone__28mm1.jpg" />
+    <Content Include="Images\sony.jpg" />
     <Content Include="Images\TPANZ-logo_s.png" />
+    <Content Include="Images\x1d-hero.png" />
+    <Content Include="Images\Z-sony-a6000-beauty.JPG" />
     <Content Include="Models\TotaraPhotoModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TotaraPhotoModel.edmx</DependentUpon>
@@ -281,7 +299,9 @@
     <Content Include="Scripts\owl.carousel.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\waypoints.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -322,7 +342,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\admin\Models\" />
     <Folder Include="Areas\admin\Views\Shared\" />
-    <Folder Include="Content\fonts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -336,6 +355,13 @@
     <Content Include="Models\TotaraPhotoModel.edmx.diagram">
       <DependentUpon>TotaraPhotoModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\fonts\flexslider-icon.eot" />
+    <Content Include="Content\fonts\flexslider-icon.ttf" />
+    <Content Include="Content\fonts\flexslider-icon.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
     <None Include="Project_Readme.html" />
     <Content Include="Views\NewProduct\Detail.cshtml" />
     <Content Include="Views\Cart\Summary.cshtml" />
@@ -345,6 +371,18 @@
     <Content Include="Views\Home\EditAbout.cshtml" />
     <Content Include="ResFiles\Clendons_NZPhotography.pdf" />
     <Content Include="Views\Resource\Badboy.cshtml" />
+    <None Include="Properties\PublishProfiles\AzureTest20161024 - FTP %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\AzureTest20161024 - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\AzureTest20161024 - Web Deploy %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\AzureTest20161024 - Web Deploy.pubxml" />
+    <Content Include="ResFiles\BauerContractReview_Feb2015.pdf" />
+    <Content Include="ResFiles\TangibleContractReview.pdf" />
+    <Content Include="ResFiles\updig_quickguide_v4.pdf" />
+    <Content Include="Views\MemberShip\Index.cshtml" />
+    <Content Include="Views\MemberShip\PaymentSuccessful.cshtml" />
+    <Content Include="Views\MemberShip\Subscribe.cshtml" />
+    <Content Include="Views\MemberShip\PaymentCancelled.cshtml" />
+    <Content Include="Views\Order\PaymentCancelled.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
