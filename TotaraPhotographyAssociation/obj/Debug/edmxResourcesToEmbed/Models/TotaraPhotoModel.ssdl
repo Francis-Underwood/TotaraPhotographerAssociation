@@ -49,6 +49,7 @@
     <Property Name="OrderStatus" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="CreatedDate" Type="datetime" Nullable="false" />
     <Property Name="PaypalPaymentId" Type="nvarchar" MaxLength="128" />
+    <Property Name="CustomerId" Type="nvarchar" MaxLength="128" />
   </EntityType>
   <EntityType Name="OrderDetails">
     <Key>

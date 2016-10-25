@@ -76,6 +76,7 @@
     <Property Name="OrderStatus" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="PaypalPaymentId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="SysParam">
     <Key>

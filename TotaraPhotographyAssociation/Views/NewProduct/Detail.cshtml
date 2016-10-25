@@ -30,14 +30,16 @@
 
                         <h1 class="text-center">@Model.Name</h1>
                         <p class="price">@Model.Price.ToString("c")</p>
+if (@User.Identity.IsUserInFullOrAssociate())
+{
                         <p class="text-center">
                             <input name="qty" value="1" class="col-sm-offset-5 form-control" type="number" style="width: 14%">
                         </p>
                         <p class="text-center buttons">
                             <a href="javascript:void(0);" onclick="addToCart(this)" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Add to cart</a>
                         </p>
-
-                    }
+    }
+}
                 </div>
 
             </div>

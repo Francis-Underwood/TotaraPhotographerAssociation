@@ -48,6 +48,7 @@
     <EntitySetMapping Name="CustomerOrders">
       <EntityTypeMapping TypeName="TotaraPhotoModel.CustomerOrder">
         <MappingFragment StoreEntitySet="CustomerOrder">
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
           <ScalarProperty Name="PaypalPaymentId" ColumnName="PaypalPaymentId" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />

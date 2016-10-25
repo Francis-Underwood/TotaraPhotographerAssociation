@@ -35,15 +35,19 @@
                             <p class="price">@c.Price.ToString("c")</p>
                             <div class="buttons" style="margin-bottom: 20px">
                                 <a href="@Url.Action("Detail", "NewProduct", new { prdId = c.Id })" class="btn btn-default">View detail</a>
-                                @using (
-                                    Html.BeginForm("AddToCart", "Cart", FormMethod.Post, new {style = "display:inline;"})
-                                 )
+@if (@User.Identity.IsUserInFullOrAssociate())
+{
+                                using (
+Html.BeginForm("AddToCart", "Cart", FormMethod.Post, new { style = "display:inline;" })
+)
                                 {
-                                    <input type="hidden" name="prdId" value="@c.Id"/>
+                                    <input type="hidden" name="prdId" value="@c.Id" />
                                     <input type="hidden" name="rtnUrl" value="@Request.Url.PathAndQuery" />
                                     <a href="javascript:void(0);" onclick="addToCart(this)" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 
                                 }
+}
+
                             </div>
                         </div>
                         <!-- /.text -->
