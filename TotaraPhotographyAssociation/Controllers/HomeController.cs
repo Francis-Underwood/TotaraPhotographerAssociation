@@ -26,7 +26,8 @@ namespace TotaraPhotographyAssociation.Controllers
             return View();
         }
 
-
+        // Vincent: only administrator and full member can update the 'About Us' page
+        [Authorize(Roles = "full, admin")]
         public ActionResult EditAbout()
         {
             string about = (from p in this.dbCnxt.SysParams
@@ -36,6 +37,8 @@ namespace TotaraPhotographyAssociation.Controllers
             return View();
         }
 
+        // Vincent: only administrator and full member can update the 'About Us' page
+        [Authorize(Roles = "full, admin")]
         [HttpPost]
         public ActionResult UpdateAbout(string aboutus)
         {

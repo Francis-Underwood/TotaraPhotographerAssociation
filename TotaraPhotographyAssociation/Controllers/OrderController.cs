@@ -15,21 +15,16 @@ namespace TotaraPhotographyAssociation.Controllers
     {
         private TotaraPhotoEntities dbCnxt = new TotaraPhotoEntities();
 
-        // GET: Order
-        public ActionResult Index()
-        {
-            //Cart c = (Cart)Session["cart"];
-
-            return View();
-        }
-
+        // Vincent: display create order form
+        [Authorize(Roles = "full, associate")]
         public ActionResult Create(Cart cart)
         {
             return View();
         }
 
-        /**/
+        // Vincent: create order and redirect to Paypal
         [HttpPost]
+        [Authorize(Roles = "full, associate")]
         public ActionResult Create(Cart cart, CreateOrderViewModel vmodel)
         {
             bool isValid = true;
@@ -126,7 +121,7 @@ namespace TotaraPhotographyAssociation.Controllers
         }
 
 
-
+        [Authorize(Roles = "full, associate")]
         public ActionResult PaymentSuccessful(string paymentId, string token, string PayerID)
         {
             // Execute Payment
@@ -156,14 +151,15 @@ namespace TotaraPhotographyAssociation.Controllers
             return View();
         }
 
+        [Authorize(Roles = "full, associate")]
         public ActionResult PaymentCancelled()
         {
             //return RedirectToAction("Error");
             return View();
         }
 
-
-        public string GetBaseUrl()
+        // just compute the base url: localhost:44000
+        private string GetBaseUrl()
         {
             return Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port.ToString();
         }

@@ -10,7 +10,10 @@ namespace TotaraPhotographyAssociation.Controllers
     public class NewProductController : Controller
     {
         private TotaraPhotoEntities dbCnxt = new TotaraPhotoEntities();
+
         // GET: NewProduct
+        // Vincent: list all the products
+        [Authorize(Roles = "full, associate, expired, inactive")]
         public ActionResult Index()
         {
             List<Product> products = (from p in this.dbCnxt.Products
@@ -19,6 +22,8 @@ namespace TotaraPhotographyAssociation.Controllers
             return View(products);
         }
 
+        // Vincent: display the detail of a product
+        [Authorize(Roles = "full, associate, expired, inactive")]
         public ActionResult Detail(string prdId = "")
         {
             if (string.IsNullOrEmpty(prdId))

@@ -17,6 +17,7 @@ namespace TotaraPhotographyAssociation.Controllers
         private TotaraPhotoEntities dbCnxt = new TotaraPhotoEntities();
 
         // GET: MemberShip
+        [Authorize(Roles = "full, associate, expired, inactive")]
         public ActionResult Index()
         {
             // Vincent: grab current user's id
@@ -42,11 +43,9 @@ namespace TotaraPhotographyAssociation.Controllers
             return View(model);
         }
 
+        
 
-
-
-
-
+        [Authorize(Roles = "full, associate, expired, inactive")]
         public ActionResult Subscribe(string plan)
         {
             ViewBag.Plan = plan;
@@ -56,14 +55,17 @@ namespace TotaraPhotographyAssociation.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "full, associate, expired, inactive")]
         public ActionResult Subscribe(string plan, PurchaseMembershipViewModel vmodel)
         {
             bool isValid = true;
 
+            // Vincent: store the plan user chose in session, for later
             Session["plan"] = plan;
 
             if (ModelState.IsValid)
             {
+                // Vincent: set up paypal payment service
                 if (plan == "associate")
                 {
                     PPPSMembership.membershipFee = 15.00m;
@@ -82,7 +84,7 @@ namespace TotaraPhotographyAssociation.Controllers
                 }
 
 
-                // go to Paypal
+                // Vincent: go to Paypal
                 try
                 {
                     Payment payment = PPPSMembership.CreatePayment(GetBaseUrl(), "sale");
@@ -97,15 +99,9 @@ namespace TotaraPhotographyAssociation.Controllers
 
             return View();
         }
+        
 
-
-
-
-
-
-
-
-
+        [Authorize(Roles = "full, associate, expired, inactive")]
         public ActionResult PaymentSuccessful(string paymentId, string token, string PayerID)
         {
             // Execute Payment
@@ -135,7 +131,7 @@ namespace TotaraPhotographyAssociation.Controllers
                     var ur = (from f in this.dbCnxt.AspNetUserRoles
                               where f.UserId == u.Id
                               select f).FirstOrDefault();
-                    ur.ExpiryDate = DateTime.Now;
+                    ur.ExpiryDate = DateTime.Now.AddYears(1);
                     this.dbCnxt.SaveChanges();
 
                     ViewBag.UpdateRole = "yes";
@@ -153,14 +149,15 @@ namespace TotaraPhotographyAssociation.Controllers
             return View();
         }
 
+        [Authorize(Roles = "full, associate, expired, inactive")]
         public ActionResult PaymentCancelled()
         {
             //return RedirectToAction("Error");
             return View();
         }
 
-
-        public string GetBaseUrl()
+        // just compute the base url: localhost:44000
+        private string GetBaseUrl()
         {
             return Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port.ToString();
         }

@@ -8,6 +8,7 @@ namespace TotaraPhotographyAssociation
 {
     public static class ExtensionMethods
     {
+        // return true if the currently logged user is associate or full
         public static bool IsUserInFullOrAssociate(this System.Security.Principal.IIdentity identity)
         {
             // http://stackoverflow.com/questions/21688928/asp-net-identity-get-all-roles-of-logged-in-user
@@ -30,6 +31,50 @@ namespace TotaraPhotographyAssociation
 
             return isFull;
         }
+
+        // return true if the currently logged user is associate, full, inactive or expired 
+        public static bool IsFrontEndUser(this System.Security.Principal.IIdentity identity)
+        {
+            ClaimsIdentity userIdentity = (ClaimsIdentity)identity;
+            List<Claim> roles = userIdentity.Claims.Where(c => c.Type == ClaimTypes.Role).ToList();
+
+            bool isFrontEndUser = false;
+
+            foreach (Claim c in roles)
+            {
+                if (c.Value.ToString() == "full" || c.Value.ToString() == "associate" || c.Value.ToString() == "expired" || c.Value.ToString() == "inactive")
+                {
+                    isFrontEndUser = true;
+                    break;
+                }
+            }
+
+            return isFrontEndUser;
+        }
+
+        // return true if the currently logged user is admin 
+        public static bool IsAdminOrFull(this System.Security.Principal.IIdentity identity)
+        {
+            ClaimsIdentity userIdentity = (ClaimsIdentity)identity;
+            List<Claim> roles = userIdentity.Claims.Where(c => c.Type == ClaimTypes.Role).ToList();
+
+            bool isAdminOrFull = false;
+
+            foreach (Claim c in roles)
+            {
+                if (c.Value.ToString() == "admin" || c.Value.ToString() == "full")
+                {
+                    isAdminOrFull = true;
+                    break;
+                }
+            }
+
+            return isAdminOrFull;
+        }
+
+
+
+
     }
 
 }

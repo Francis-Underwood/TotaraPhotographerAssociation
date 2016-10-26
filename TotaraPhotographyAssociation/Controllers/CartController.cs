@@ -13,6 +13,7 @@ namespace TotaraPhotographyAssociation.Controllers
         private TotaraPhotoEntities dbCnxt = new TotaraPhotoEntities();
 
         // GET: Cart
+        [Authorize(Roles = "full, associate")]
         public ActionResult Index(Cart cart, string rtnUrl = "")
         {
 
@@ -24,6 +25,7 @@ namespace TotaraPhotographyAssociation.Controllers
                 );
         }
 
+        [Authorize(Roles = "full, associate")]
         public ActionResult AddToCart(Cart cart, string prdId, int qty = 1, string rtnUrl = "")
         {
             Product p = this.dbCnxt.Products.FirstOrDefault(prd => prd.Id == prdId);
@@ -42,7 +44,7 @@ namespace TotaraPhotographyAssociation.Controllers
             return PartialView(cart);
         }
 
-
+        [Authorize(Roles = "full, associate")]
         public ActionResult UpdateCart(Cart cart)
         {
             foreach (var l in cart.Lines)
@@ -68,6 +70,7 @@ namespace TotaraPhotographyAssociation.Controllers
             return RedirectToAction("Index", "Cart");
         }
 
+        [Authorize(Roles = "full, associate")]
         public ActionResult RemoveFromCart(Cart cart, string prdId)
         {
             try
