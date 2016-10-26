@@ -101,7 +101,7 @@
                     </li>
 @if (@User.Identity.IsAdminOrFull())
 {
-                    <li class="@((ctrllerName == "home" && actName == "about") ? "active" : "dropdown")">
+                    <li class="@((ctrllerName == "home" && actName == "editabout") ? "active" : "dropdown")">
                         @Html.ActionLink("Edit About", "EditAbout", "Home", null, new { @class = "dropdown-toggle", data_hover = "dropdown", data_delay = "200" })
                     </li>
 }

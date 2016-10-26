@@ -73,7 +73,24 @@ namespace TotaraPhotographyAssociation
         }
 
 
+        public static bool IsAdmin(this System.Security.Principal.IIdentity identity)
+        {
+            ClaimsIdentity userIdentity = (ClaimsIdentity)identity;
+            List<Claim> roles = userIdentity.Claims.Where(c => c.Type == ClaimTypes.Role).ToList();
 
+            bool isAdmin = false;
+
+            foreach (Claim c in roles)
+            {
+                if (c.Value.ToString() == "admin")
+                {
+                    isAdmin = true;
+                    break;
+                }
+            }
+
+            return isAdmin;
+        }
 
     }
 

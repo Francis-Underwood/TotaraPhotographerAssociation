@@ -18,6 +18,8 @@ namespace TotaraPhotographyAssociation.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
+        private TotaraPhotoEntities dbCnxt = new TotaraPhotoEntities();
+
         public AccountController()
         {
         }
@@ -86,6 +88,19 @@ namespace TotaraPhotographyAssociation.Controllers
                     // this is the only proper point to redirect to membership page, and it is difficulty
                     // to distingush the two different cases: expires, and not does not expire.
                     // for simplicity, in both cases user will be redirected to membership page 
+
+                    string role = (from r in this.dbCnxt.AspNetRoles
+                                   join ur in this.dbCnxt.AspNetUserRoles on r.Id equals ur.RoleId
+                                   join u in this.dbCnxt.AspNetUsers on ur.UserId equals u.Id
+                                   where u.Email == model.Email
+                                   select r.Name).FirstOrDefault();
+
+                    //if (User.Identity.IsAdmin()) // does not work
+                    if (role == "admin")
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+
                     return RedirectToAction("Index", "Membership");
 
 
@@ -417,6 +432,11 @@ namespace TotaraPhotographyAssociation.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            // Vincent: clear the vars in the session
+            Session.Clear();
+            // Vincent: kill the session
+            Session.Abandon();
+
             return RedirectToAction("Index", "Home");
         }
 
