@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using TotaraPhotographyAssociation.Models;
 using TotaraPhotographyAssociation.DomainEntities;
 
@@ -16,10 +17,24 @@ namespace TotaraPhotographyAssociation.Controllers
         [Authorize(Roles = "full, associate")]
         public ActionResult Index(Cart cart, string rtnUrl = "")
         {
+            string uid = User.Identity.GetUserId();
+            decimal? discount = (from r in this.dbCnxt.AspNetRoles
+                                 join ur in this.dbCnxt.AspNetUserRoles on r.Id equals ur.RoleId
+                                 where ur.UserId == uid
+                                 select r.Discount).FirstOrDefault();
+
+            decimal defDis = 1.00m;
+            if (discount.HasValue)
+            {
+                defDis = discount.Value;
+            }
+
+
 
             return View(new CartIndexViewModel
-                        {
-                            Cart = cart,
+            {
+                Cart = cart,
+                Discount = defDis,
                             ReturnUrl = rtnUrl
                         }
                 );

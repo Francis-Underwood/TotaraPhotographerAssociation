@@ -28,6 +28,18 @@ namespace TotaraPhotographyAssociation.Controllers
         public ActionResult Create(Cart cart, CreateOrderViewModel vmodel)
         {
             bool isValid = true;
+            string uid = User.Identity.GetUserId();
+            decimal? discount = (from r in this.dbCnxt.AspNetRoles
+                                join ur in this.dbCnxt.AspNetUserRoles on r.Id equals ur.RoleId
+                                where ur.UserId == uid
+                                select r.Discount).FirstOrDefault();
+
+            decimal defDis = 1.00m;
+            if (discount.HasValue)
+            {
+                defDis = discount.Value;
+            }
+
 
             if (ModelState.IsValid)
             {
@@ -71,7 +83,7 @@ namespace TotaraPhotographyAssociation.Controllers
                                 od.ProductId = l.Product.Id;
                                 od.Quantity = l.Quantity;
                                 od.UnitPrice = l.Product.Price;
-                                od.Discount = (1 - 0.10m);
+                                od.Discount = defDis;
                                 od.CreatedDate = o.CreatedDate;
 
                                 dbCnxt.OrderDetails.Add(od);
@@ -97,7 +109,7 @@ namespace TotaraPhotographyAssociation.Controllers
                     {
                         // go to Paypal
                         PayPalPaymentService.cart = cart;
-                        PayPalPaymentService.discount = 1 - 0.10m;  // TODO: get it from db
+                        PayPalPaymentService.discount = defDis; 
                         PayPalPaymentService.orderId = orderID;
                         // pass discount
 
@@ -108,8 +120,8 @@ namespace TotaraPhotographyAssociation.Controllers
                         }
                         catch (Exception ex)
                         {
-                            // log
-                            // TODO: go to error
+                            // TODO: log
+                            return View("~/Views/Shared/Error.cshtml");
                         }
                     }
 
@@ -165,7 +177,7 @@ namespace TotaraPhotographyAssociation.Controllers
         }
 
 
-
+       
 
     }
 }

@@ -2,8 +2,8 @@
 
 @{
     ViewBag.Title = "My Cart";
-    var totalDis = Model.Cart.ComputeTotalValue() * 0.05m; // grab discount from user role
-    var total = Model.Cart.ComputeTotalValue() * (1 - 0.05m);
+    var totalDis = Model.Cart.ComputeTotalValue() * (1 - Model.Discount);
+    var total = Model.Cart.ComputeTotalValue() * Model.Discount;
 }
 
 <div class="col-md-9" id="basket">
@@ -35,8 +35,8 @@
                         <tbody>
                             @foreach (var line in Model.Cart.Lines)
                             {
-                                var discnt = line.Product.Price * line.Quantity * 0.05m;
-                                var realPrice = line.Product.Price * line.Quantity * (1-0.05m);
+                                var discnt = line.Product.Price * line.Quantity * (1 - Model.Discount);
+                                var realPrice = line.Product.Price * line.Quantity * Model.Discount;
                                 <tr>
                                     <td>
                                         <a href="@Url.Action("Detail", "NewProduct", new { prdId = line.Product.Id })">

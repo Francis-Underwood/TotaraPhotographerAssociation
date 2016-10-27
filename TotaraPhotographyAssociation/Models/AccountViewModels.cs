@@ -115,6 +115,7 @@ namespace TotaraPhotographyAssociation.Models
     public class CartIndexViewModel
     {
         public Cart Cart { get; set; }
+        public decimal Discount { get; set; }
         public string ReturnUrl { get; set; }
     }
 

@@ -66,7 +66,7 @@ namespace TotaraPhotographyAssociation.Services
                 
                 i.name = line.Product.Name;
                 i.currency = "NZD";
-                i.price = line.Product.Price.ToString("#0.00");
+                i.price = (line.Product.Price * discount).ToString("#0.00");
                 i.quantity = line.Quantity.ToString();
                 i.sku = line.Product.Id;
 
