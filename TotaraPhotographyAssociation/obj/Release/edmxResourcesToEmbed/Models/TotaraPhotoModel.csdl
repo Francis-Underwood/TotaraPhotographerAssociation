@@ -47,6 +47,7 @@
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
       <End Role="AspNetUserRole" EntitySet="AspNetUserRoles" />
     </AssociationSet>
+    <FunctionImport Name="ExpirizeMembership" />
   </EntityContainer>
   <EntityType Name="OrderDetail">
     <Key>

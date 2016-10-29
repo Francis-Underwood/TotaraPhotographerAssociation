@@ -99,5 +99,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="ExpirizeMembership" FunctionName="TotaraPhotoModel.Store.ExpirizeMembership" />
   </EntityContainerMapping>
 </Mapping>

@@ -12,6 +12,8 @@ namespace TotaraPhotographyAssociation.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class TotaraPhotoEntities : DbContext
     {
@@ -33,5 +35,10 @@ namespace TotaraPhotographyAssociation.Models
         public virtual DbSet<Resource> Resources { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserRole> AspNetUserRoles { get; set; }
+    
+        public virtual int ExpirizeMembership()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ExpirizeMembership");
+        }
     }
 }

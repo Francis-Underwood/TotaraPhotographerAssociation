@@ -156,6 +156,20 @@ namespace TotaraPhotographyAssociation.Controllers
             return View();
         }
 
+
+        public string ExpirizeMembership()
+        {
+            try
+            {
+                int res = this.dbCnxt.ExpirizeMembership();
+                return "Success: " + res.ToString();
+            }
+            catch (Exception e)
+            {
+                return "Fail: " + e.Message;
+            }
+        } 
+
         // just compute the base url: localhost:44000
         private string GetBaseUrl()
         {

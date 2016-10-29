@@ -125,6 +125,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="ExpirizeMembership" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="TotaraPhotoModelStoreContainer">
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
@@ -194,6 +195,7 @@
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRole" EntitySet="AspNetUserRoles" />
           </AssociationSet>
+          <FunctionImport Name="ExpirizeMembership" />
         </EntityContainer>
         <EntityType Name="OrderDetail">
           <Key>
@@ -393,6 +395,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ExpirizeMembership" FunctionName="TotaraPhotoModel.Store.ExpirizeMembership" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
