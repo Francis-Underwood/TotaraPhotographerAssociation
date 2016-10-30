@@ -32,6 +32,7 @@ D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\bin\Microsoft.Web.Infrastructure.dll
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\bin\Newtonsoft.Json.dll
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\bin\Owin.dll
+D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\bin\PayPal.dll
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\bin\System.Net.Http.Formatting.dll
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\bin\System.Web.Helpers.dll
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\bin\System.Web.Http.dll
@@ -44,6 +45,8 @@ D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\bin\System.Web.WebPages.Razor.dll
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\bin\WebGrease.dll
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\bin\Newtonsoft.Json.xml
+D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\bin\PayPal.xml
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\bin\System.Web.Helpers.xml
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\bin\System.Web.Mvc.xml
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\bin\System.Web.Optimization.xml
@@ -52,7 +55,6 @@ D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\bin\System.Web.WebPages.Deployment.xml
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\bin\System.Web.WebPages.Razor.xml
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\bin\Antlr3.Runtime.pdb
-D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\bin\Newtonsoft.Json.xml
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\bin\System.Net.Http.Formatting.xml
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\bin\System.Web.Http.xml
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\bin\System.Web.Http.WebHost.xml
@@ -70,8 +72,5 @@ D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\bin\Microsoft.Owin.Security.Google.xml
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\bin\Microsoft.Owin.Security.Twitter.xml
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\obj\Debug\TotaraPhotographyAssociation.csprojResolveAssemblyReference.cache
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\obj\Debug\TotaraPhotographyAssociation.dll
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\obj\Debug\TotaraPhotographyAssociation.pdb
-D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\bin\PayPal.dll
-D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\bin\PayPal.xml
