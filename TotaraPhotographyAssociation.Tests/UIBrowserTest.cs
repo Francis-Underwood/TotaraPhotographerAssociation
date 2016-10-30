@@ -13,8 +13,10 @@ namespace TotaraPhotographyAssociation.Tests
     [TestClass]
     public class UIBrowserTest
     {
-        static IWebDriver driverChrome;
-        static IWebDriver driverIE;
+        private const string ScreenShotLocation = @"D:\workcomplex\SeleniumShots";
+
+        private static IWebDriver driverChrome;
+        private static IWebDriver driverIE;
 
         public static TestContext testContext { get; set; }
 
@@ -51,8 +53,36 @@ namespace TotaraPhotographyAssociation.Tests
             driver.Navigate().GoToUrl("http://localhost:42439/");
             */
             //driverChrome.Navigate().GoToUrl("http://localhost:42439/");
-            driverIE.Navigate().GoToUrl("http://localhost:42439/");
+            try
+            {
+                driverIE.Navigate().GoToUrl("http://localhost:42439/");
 
+                // by Id
+                IWebElement eleALogin = driverIE.FindElement(By.Id("loginLink"));
+                eleALogin.Click();
+                System.Threading.Thread.Sleep(2000);
+
+                // by Name
+                IWebElement eleInputEmail = driverIE.FindElement(By.Name("Email"));
+                eleInputEmail.SendKeys("aaron@example.com");
+                System.Threading.Thread.Sleep(4000);
+
+                // by Name
+                IWebElement eleInputPwd = driverIE.FindElement(By.Name("Password"));
+                eleInputPwd.SendKeys("[Freud 1900]");
+                System.Threading.Thread.Sleep(4000);
+
+                eleInputPwd.Submit();
+
+                Screenshot ss = ((ITakesScreenshot)driverIE).GetScreenshot();
+                ss.SaveAsFile(ScreenShotLocation + "\\" + "result.jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);
+
+            }
+            catch (Exception ex) { }
+            finally
+            {
+                driverIE.Quit();
+            }
         }
 
 
