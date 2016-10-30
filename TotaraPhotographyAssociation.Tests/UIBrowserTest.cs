@@ -28,7 +28,7 @@ namespace TotaraPhotographyAssociation.Tests
             driverChrome.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
             */
 
-            IWebDriver driverIE = new InternetExplorerDriver(@"D:\workcomplex\SeleniumDrivers");
+            driverIE = new InternetExplorerDriver(@"D:\workcomplex\SeleniumDrivers");
             System.Threading.Thread.Sleep(6000);
             driverIE.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
         }
