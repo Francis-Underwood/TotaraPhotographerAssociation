@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity.Owin;
 using PayPal.Api;
 using TotaraPhotographyAssociation.Models;
 using TotaraPhotographyAssociation.Services;
+using Microsoft.Owin.Security;
 
 namespace TotaraPhotographyAssociation.Controllers
 {
@@ -133,6 +134,12 @@ namespace TotaraPhotographyAssociation.Controllers
                               select f).FirstOrDefault();
                     ur.ExpiryDate = DateTime.Now.AddYears(1);
                     this.dbCnxt.SaveChanges();
+
+                    // refresh cookie, to reload user role infor
+                    var authenticationManager = HttpContext.GetOwinContext().Authentication;
+                    authenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+                    var identity = userManager.CreateIdentity(u, DefaultAuthenticationTypes.ApplicationCookie);
+                    authenticationManager.SignIn(new AuthenticationProperties { IsPersistent = false }, identity);
 
                     ViewBag.UpdateRole = "yes";
                 }
