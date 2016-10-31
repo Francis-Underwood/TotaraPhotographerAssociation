@@ -23,7 +23,8 @@
         <div class="row" style="min-height: 448px;">
             <div class="col-sm-12">
                 <div class="form-group">
-                    <textarea name="aboutus" class="form-control" style="min-height: 248px;">@a</textarea>
+                    <textarea name="aboutus" id="aboutus" class="form-control" style="min-height: 248px;">@a</textarea>
+                    @*@Html.TextAreaFor(model => model.HtmlContent)*@
                 </div>
             </div>
 
@@ -37,3 +38,13 @@
 
 
 </div>
+
+@section prerequisite{
+    <script src="~/Scripts/tinymce/tinymce.min.js" ></script>
+    <script>
+      tinymce.init({
+          selector: 'textarea#aboutus'
+      });
+    </script>
+}
+
