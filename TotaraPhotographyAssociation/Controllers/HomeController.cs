@@ -10,6 +10,7 @@ namespace TotaraPhotographyAssociation.Controllers
 {
     public class HomeController : Controller
     {
+        // Vincent: Entity Framework's database context
         private TotaraPhotoEntities dbCnxt = new TotaraPhotoEntities();
 
         public ActionResult Index()
@@ -17,6 +18,7 @@ namespace TotaraPhotographyAssociation.Controllers
             return View();
         }
 
+        // Vincent: grab the HTML for about us from DB, display it
         public ActionResult About()
         {
             string about = (from p in this.dbCnxt.SysParams
@@ -34,7 +36,6 @@ namespace TotaraPhotographyAssociation.Controllers
                             where p.ParaName == "about"
                             select p.ParaVal).FirstOrDefault();
             EditAboutUsFormViewModel model = new EditAboutUsFormViewModel() { AboutUs = about };
-            //ViewBag.Message = about;
             return View(model);
         }
 
@@ -42,16 +43,14 @@ namespace TotaraPhotographyAssociation.Controllers
         [Authorize(Roles = "full, admin")]
         [HttpPost]
        // [AllowHtml]
-        public ActionResult UpdateAbout(EditAboutUsFormViewModel model)
+        public ActionResult UpdateAbout(EditAboutUsFormViewModel model)    // Vincent: to apply [AllowHtml], it has to be a model class
         {
             SysParam about = (from p in this.dbCnxt.SysParams
                             where p.ParaName == "about"
                             select p).FirstOrDefault();
             about.ParaVal = model.AboutUs;
-
-            this.dbCnxt.SaveChanges();
-
-            //ViewBag.Message = about.ParaVal;
+            // Vincent: update the data into database
+            this.dbCnxt.SaveChanges();  // TODO: some validation need to be done, to stripe <script>, to avoid XSS attack
             return View("EditAbout", model);
         }
 

@@ -74,3 +74,4 @@ D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\obj\Debug\TotaraPhotographyAssociation.dll
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\obj\Debug\TotaraPhotographyAssociation.pdb
+D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation\obj\Debug\TotaraPhotographyAssociation.csprojResolveAssemblyReference.cache

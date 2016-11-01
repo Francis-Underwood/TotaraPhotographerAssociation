@@ -9,6 +9,7 @@
 
     <h2>Edit About</h2>
 
+    @*Vince: in case the user arrives here second time, it means he has submitted previously, output this alert*@
     @if (IsPost)
     {
         <div class="alert alert-info">
@@ -16,17 +17,30 @@
         </div>
     }
 
+    @*Vincent: inspired by http://stackoverflow.com/questions/33617282/how-to-upload-and-inject-image-to-tinymce-4-using-asp-net-mvc*@
+
+    @*Vince: this invisible iframe is used to execute the JavaScript returned from server.*@
+    <iframe id="form_target" name="form_target" style="display:none"></iframe>
+    @*Vince: this invisible form is used to upload the images inserted in the TinyMCE text editor.
+        once user select one image, this form will be submitted.
+    *@
+    <form id="my_form" action="/ImageUploader/UploadImage" target="form_target" method="post" enctype="multipart/form-data" style="width:0;height:0;overflow:hidden">
+        <input name="file" type="file" onchange="$('#my_form').submit();this.value='';">
+    </form>
+
     @using (
-                Html.BeginForm("UpdateAbout", "Home", FormMethod.Post, new { id = "aboutForm" })
-            )
+        Html.BeginForm("UpdateAbout", "Home", FormMethod.Post, new { id = "aboutForm" })
+    )
     {
 
         <div class="row" style="min-height: 448px;">
+
             <div class="col-sm-12">
                 <div class="form-group">
                     <textarea name="aboutus" id="aboutus" class="form-control" style="min-height: 248px;">
                         @Model.AboutUs
-                </textarea>
+                    </textarea>
+                    @*Vincent: cannot get TextAreaFor to work*@
                     @*@Html.TextAreaFor(model => model.HtmlContent)*@
                 </div>
             </div>
@@ -39,24 +53,33 @@
         <!-- /.row -->
     }
 
-
 </div>
 
+@*Vincent: set up TinyMCE.*@
+
 @section prerequisite{
-    <script src="~/Scripts/tinymce/tinymce.min.js" ></script>
+    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
     <script>
-      tinymce.init({
-          selector: 'textarea#aboutus',
-          plugins: [
-        "advlist autolink lists link image charmap print preview hr anchor pagebreak",
-        "searchreplace wordcount visualblocks visualchars code fullscreen",
-        "insertdatetime media nonbreaking save table contextmenu directionality",
-        "emoticons template paste textcolor colorpicker textpattern imagetools"
-          ],
-          paste_data_images: true,
-          images_upload_url: '/ImageUploader/UploadImage',
-          images_upload_base_path: '/App_Upload'
-      });
+        tinymce.init({
+            selector: 'textarea#aboutus',
+            plugins: [
+              "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+              "searchreplace wordcount visualblocks visualchars code fullscreen",
+              "insertdatetime media nonbreaking save table contextmenu directionality",
+              "emoticons template paste textcolor colorpicker textpattern imagetools"
+            ],
+            toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+            toolbar2: "print preview media | forecolor backcolor emoticons | ltr rtl",
+            image_advtab: true,
+            templates: [
+                { title: 'Test template 1', content: 'Test 1' },
+                { title: 'Test template 2', content: 'Test 2' }
+            ],
+            @*Vince: once user select one image, this callback fuction will be invoked automatically*@
+            file_browser_callback: function (field_name, url, type, win) {
+                if (type == 'image') $('#my_form input').click();
+            }
+        });
     </script>
 }
 

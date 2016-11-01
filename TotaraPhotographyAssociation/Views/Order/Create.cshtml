@@ -7,13 +7,18 @@
 <div class="col-md-12" id="checkout">
 
     <div class="box">
-        
-@using (Html.BeginForm("Create", "Order", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
+
+        @*
+            Vince: Generate the form to collect shipping information for an order
+        *@
+
+        @using (Html.BeginForm("Create", "Order", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
             <h1>Checkout</h1>
 
             @Html.ValidationSummary("", new { @class = "text-danger" })
+
             <div class="content">
                 <div class="row">
                     <div class="col-sm-6">
@@ -38,7 +43,6 @@
                             @Html.TextBoxFor(m => m.DeliveryAddressLine_1, new { @class = "form-control" })
                         </div>
                     </div>
-                    
                 </div>
                 <!-- /.row -->
 
@@ -49,7 +53,6 @@
                             @Html.TextBoxFor(m => m.DeliveryAddressLine_2, new { @class = "form-control" })
                         </div>
                     </div>
-
                 </div>
                 <!-- /.row -->
 
@@ -70,7 +73,6 @@
                             @Html.TextBoxFor(m => m.RecepientPhone, new { @class = "form-control" })
                         </div>
                     </div>
-                    
                 </div>
                 <!-- /.row -->
 
@@ -96,9 +98,8 @@
                     </button>
                 </div>
             </div>
-}
+        }
     </div>
     <!-- /.box -->
-
 
 </div>

@@ -30,7 +30,6 @@ namespace TotaraPhotographyAssociation.Models
         [Required]
         [Display(Name = "Shipping Address Line1")]
         public string DeliveryAddressLine_1 { get; set; }
-
         
         [Display(Name = "Shipping Address Line2")]
         public string DeliveryAddressLine_2 { get; set; }
@@ -43,7 +42,6 @@ namespace TotaraPhotographyAssociation.Models
         public string CartLoaded { get; set; }
 
     }
-
 
     public class MembershipViewModel
     {
@@ -59,6 +57,7 @@ namespace TotaraPhotographyAssociation.Models
 
     public class EditAboutUsFormViewModel
     {
+        // Vince: to accept HTML markup
         [AllowHtml]
         public string AboutUs { get; set; }
     }

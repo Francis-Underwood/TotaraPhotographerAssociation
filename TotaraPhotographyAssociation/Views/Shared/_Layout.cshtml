@@ -40,11 +40,13 @@
 
     <script src="~/Scripts/respond.min.js"></script>
 
+    @*
+        Vince: for some specific pages, special Js libs are required.
+    *@
+
     @RenderSection("prerequisite", required: false)
 
     <link rel="shortcut icon" href="favicon.png">
-
-
 
 </head>
 
@@ -58,6 +60,9 @@
                 Totara Photographer Association of New Zealand
             </div>
 
+            @*
+                Vince: render the login buttons at top right corner
+            *@
             @Html.Partial("_LoginPartial")
 
         </div>
@@ -74,7 +79,6 @@
 
                 <a class="navbar-brand home tpanz-logo" href="@Url.Action("Index", "Home", null, null)" data-animate-hover="bounce">
                     <img src="~/Images/TPANZ-logo_s.png" alt="TPANZ logo" class="hidden-xs">
-                    
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
@@ -95,39 +99,43 @@
             <div class="navbar-collapse collapse" id="navigation">
 
                 <ul class="nav navbar-nav navbar-left">
-                    <li class="@((ctrllerName == "home" && actName == "index") ? "active" : "dropdown")">   @*Vincent: if it is the current route, high*@
-                            @Html.ActionLink("Home", "Index", "Home", null, new { @class = "dropdown-toggle", data_hover = "dropdown", data_delay = "200" })
+                    @*
+                        Vincent: if it is the current route, highlight it
+                    *@
+                    <li class="@((ctrllerName == "home" && actName == "index") ? "active" : "dropdown")">
+
+                        @Html.ActionLink("Home", "Index", "Home", null, new { @class = "dropdown-toggle", data_hover = "dropdown", data_delay = "200" })
                     </li>
                     <li class="@((ctrllerName == "home" && actName == "about") ? "active" : "dropdown")">
                         @Html.ActionLink("About", "About", "Home", null, new { @class = "dropdown-toggle", data_hover = "dropdown", data_delay = "200" })
                     </li>
-@if (@User.Identity.IsAdminOrFull())
-{
-                    <li class="@((ctrllerName == "home" && actName == "editabout") ? "active" : "dropdown")">
-                        @Html.ActionLink("Edit About", "EditAbout", "Home", null, new { @class = "dropdown-toggle", data_hover = "dropdown", data_delay = "200" })
-                    </li>
-}
-@if (@User.Identity.IsFrontEndUser())
-{
-                    <li class="@((ctrllerName == "newproduct" && actName == "index") ? "active" : "dropdown")">
-                        @Html.ActionLink("New Product", "Index", "NewProduct", null, new { @class = "dropdown-toggle", data_hover = "dropdown", data_delay = "200" })
-                    </li>
-}
-                @if (@User.Identity.IsUserInFullOrAssociate())
-                {
-                    <li class="@((ctrllerName == "resource" && actName == "index") ? "active" : "dropdown")">
-                        @Html.ActionLink("Resource", "Index", "Resource", null, new { @class = "dropdown-toggle", data_hover = "dropdown", data_delay = "200" })
-                    </li>
-                    <li class="@((ctrllerName == "cart" && actName == "index") ? "active" : "dropdown")">
-                        @Html.ActionLink("Cart", "Index", "Cart", null, new { @class = "dropdown-toggle", data_hover = "dropdown", data_delay = "200" })
-                    </li>
-                }
-@if (@User.Identity.IsFrontEndUser())
-{
-                    <li class="@((ctrllerName == "Membership" && actName == "index") ? "active" : "dropdown")">
-                        @Html.ActionLink("Membership", "Index", "Membership", null, new { @class = "dropdown-toggle", data_hover = "dropdown", data_delay = "200" })
-                    </li>
-}
+                    @if (@User.Identity.IsAdminOrFull())
+                    {
+                        <li class="@((ctrllerName == "home" && actName == "editabout") ? "active" : "dropdown")">
+                            @Html.ActionLink("Edit About", "EditAbout", "Home", null, new { @class = "dropdown-toggle", data_hover = "dropdown", data_delay = "200" })
+                        </li>
+                    }
+                    @if (@User.Identity.IsFrontEndUser())
+                    {
+                        <li class="@((ctrllerName == "newproduct" && actName == "index") ? "active" : "dropdown")">
+                            @Html.ActionLink("New Product", "Index", "NewProduct", null, new { @class = "dropdown-toggle", data_hover = "dropdown", data_delay = "200" })
+                        </li>
+                    }
+                    @if (@User.Identity.IsUserInFullOrAssociate())
+                    {
+                        <li class="@((ctrllerName == "resource" && actName == "index") ? "active" : "dropdown")">
+                            @Html.ActionLink("Resource", "Index", "Resource", null, new { @class = "dropdown-toggle", data_hover = "dropdown", data_delay = "200" })
+                        </li>
+                        <li class="@((ctrllerName == "cart" && actName == "index") ? "active" : "dropdown")">
+                            @Html.ActionLink("Cart", "Index", "Cart", null, new { @class = "dropdown-toggle", data_hover = "dropdown", data_delay = "200" })
+                        </li>
+                    }
+                    @if (@User.Identity.IsFrontEndUser())
+                    {
+                        <li class="@((ctrllerName == "Membership" && actName == "index") ? "active" : "dropdown")">
+                            @Html.ActionLink("Membership", "Index", "Membership", null, new { @class = "dropdown-toggle", data_hover = "dropdown", data_delay = "200" })
+                        </li>
+                    }
                 </ul>
 
             </div>
@@ -137,7 +145,6 @@
 
                 @Html.Action("Summary", "Cart")
                 <!--/.nav-collapse -->
-
 
             </div>
 
@@ -154,10 +161,7 @@
         <div id="content">
             <div class="container">
 
-
-
                 @RenderBody()
-
 
             </div>
             <!-- /.container -->
@@ -173,7 +177,6 @@
             <div class="container">
                 <div class="col-md-6">
                     <p class="pull-left">© 2016 Totara Photographer Association of New Zealand</p>
-
                 </div>
                 <div class="col-md-6">
                     <p class="pull-right">
@@ -184,8 +187,6 @@
             </div>
         </div>
         <!-- *** COPYRIGHT END *** -->
-
-
 
     </div>
     <!-- /#all -->
@@ -199,8 +200,6 @@
     <script src="~/Scripts/bootstrap-hover-dropdown.js"></script>
     <script src="~/Scripts/owl.carousel.min.js"></script>
     <script src="~/Scripts/front.js"></script>
-
-
 
 </body>
 

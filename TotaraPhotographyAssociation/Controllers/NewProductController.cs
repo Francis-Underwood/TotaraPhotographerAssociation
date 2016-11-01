@@ -26,6 +26,7 @@ namespace TotaraPhotographyAssociation.Controllers
         [Authorize(Roles = "full, associate, expired, inactive")]
         public ActionResult Detail(string prdId = "")
         {
+            // Vince: check the validity 
             if (string.IsNullOrEmpty(prdId))
             {
                 return View();

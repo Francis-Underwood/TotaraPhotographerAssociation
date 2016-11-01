@@ -45,7 +45,7 @@ namespace TotaraPhotographyAssociation.Controllers
         }
 
         
-
+        // Vince: display subscripe page
         [Authorize(Roles = "full, associate, expired, inactive")]
         public ActionResult Subscribe(string plan)
         {
@@ -83,8 +83,7 @@ namespace TotaraPhotographyAssociation.Controllers
                 {
                     ModelState.AddModelError("PlanLoaded", "The plan is not recognized.");
                 }
-
-
+                
                 // Vincent: go to Paypal
                 try
                 {
@@ -105,7 +104,7 @@ namespace TotaraPhotographyAssociation.Controllers
         [Authorize(Roles = "full, associate, expired, inactive")]
         public ActionResult PaymentSuccessful(string paymentId, string token, string PayerID)
         {
-            // Execute Payment
+            // Vince: Execute Payment
             var payment = PPPSMembership.ExecutePayment(paymentId, PayerID);
 
             // Vincent: extract the plan info from session
@@ -135,7 +134,7 @@ namespace TotaraPhotographyAssociation.Controllers
                     ur.ExpiryDate = DateTime.Now.AddYears(1);
                     this.dbCnxt.SaveChanges();
 
-                    // refresh cookie, to reload user role infor
+                    // Vincent: refresh cookie, to reload user role infor
                     var authenticationManager = HttpContext.GetOwinContext().Authentication;
                     authenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
                     var identity = userManager.CreateIdentity(u, DefaultAuthenticationTypes.ApplicationCookie);
@@ -163,7 +162,7 @@ namespace TotaraPhotographyAssociation.Controllers
             return View();
         }
 
-
+        // Vince: this action is triggered regularly, to update the membership expiry data
         public string ExpirizeMembership()
         {
             try
