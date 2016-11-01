@@ -1,4 +1,5 @@
-﻿
+﻿@model TotaraPhotographyAssociation.Models.EditAboutUsFormViewModel
+
 @{
     ViewBag.Title = "EditAbout";
     string a = ViewBag.Message;
@@ -23,7 +24,9 @@
         <div class="row" style="min-height: 448px;">
             <div class="col-sm-12">
                 <div class="form-group">
-                    <textarea name="aboutus" id="aboutus" class="form-control" style="min-height: 248px;">@a</textarea>
+                    <textarea name="aboutus" id="aboutus" class="form-control" style="min-height: 248px;">
+                        @Model.AboutUs
+                </textarea>
                     @*@Html.TextAreaFor(model => model.HtmlContent)*@
                 </div>
             </div>
@@ -43,7 +46,16 @@
     <script src="~/Scripts/tinymce/tinymce.min.js" ></script>
     <script>
       tinymce.init({
-          selector: 'textarea#aboutus'
+          selector: 'textarea#aboutus',
+          plugins: [
+        "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+        "searchreplace wordcount visualblocks visualchars code fullscreen",
+        "insertdatetime media nonbreaking save table contextmenu directionality",
+        "emoticons template paste textcolor colorpicker textpattern imagetools"
+          ],
+          paste_data_images: true,
+          images_upload_url: '/ImageUploader/UploadImage',
+          images_upload_base_path: '/App_Upload'
       });
     </script>
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using System.ComponentModel.DataAnnotations;
 
 namespace TotaraPhotographyAssociation.Models
@@ -56,5 +57,10 @@ namespace TotaraPhotographyAssociation.Models
         public string Placeholder { get; set; }
     }
 
+    public class EditAboutUsFormViewModel
+    {
+        [AllowHtml]
+        public string AboutUs { get; set; }
+    }
 
 }

@@ -27,30 +27,32 @@ namespace TotaraPhotographyAssociation.Controllers
         }
 
         // Vincent: only administrator and full member can update the 'About Us' page
-        [Authorize(Roles = "full, admin")]
+        [Authorize(Roles = "full, admin")]     
         public ActionResult EditAbout()
         {
             string about = (from p in this.dbCnxt.SysParams
                             where p.ParaName == "about"
                             select p.ParaVal).FirstOrDefault();
-            ViewBag.Message = about;
-            return View();
+            EditAboutUsFormViewModel model = new EditAboutUsFormViewModel() { AboutUs = about };
+            //ViewBag.Message = about;
+            return View(model);
         }
 
         // Vincent: only administrator and full member can update the 'About Us' page
         [Authorize(Roles = "full, admin")]
         [HttpPost]
-        public ActionResult UpdateAbout(string aboutus)
+       // [AllowHtml]
+        public ActionResult UpdateAbout(EditAboutUsFormViewModel model)
         {
             SysParam about = (from p in this.dbCnxt.SysParams
                             where p.ParaName == "about"
                             select p).FirstOrDefault();
-            about.ParaVal = aboutus;
+            about.ParaVal = model.AboutUs;
 
             this.dbCnxt.SaveChanges();
 
-            ViewBag.Message = about.ParaVal;
-            return View("EditAbout");
+            //ViewBag.Message = about.ParaVal;
+            return View("EditAbout", model);
         }
 
 

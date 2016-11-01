@@ -24,6 +24,7 @@ D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation.
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation.Tests\bin\Debug\System.Web.WebPages.Razor.dll
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation.Tests\bin\Debug\TotaraPhotographyAssociation.dll
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation.Tests\bin\Debug\WebDriver.dll
+D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation.Tests\bin\Debug\WebDriver.Support.dll
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation.Tests\bin\Debug\Microsoft.Owin.dll
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation.Tests\bin\Debug\System.Web.Optimization.dll
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation.Tests\bin\Debug\Microsoft.AspNet.Identity.Core.dll
@@ -48,6 +49,7 @@ D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation.
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation.Tests\bin\Debug\System.Web.WebPages.Deployment.xml
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation.Tests\bin\Debug\System.Web.WebPages.Razor.xml
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation.Tests\bin\Debug\WebDriver.xml
+D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation.Tests\bin\Debug\WebDriver.Support.xml
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation.Tests\bin\Debug\Microsoft.Owin.xml
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation.Tests\bin\Debug\System.Web.Optimization.xml
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation.Tests\bin\Debug\Microsoft.AspNet.Identity.Core.xml
@@ -64,5 +66,3 @@ D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation.
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation.Tests\obj\Debug\TotaraPhotographyAssociation.Tests.csprojResolveAssemblyReference.cache
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation.Tests\obj\Debug\TotaraPhotographyAssociation.Tests.dll
 D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation.Tests\obj\Debug\TotaraPhotographyAssociation.Tests.pdb
-D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation.Tests\bin\Debug\WebDriver.Support.dll
-D:\workcomplex\aspnet\TotaraPhotographyAssociation\TotaraPhotographyAssociation.Tests\bin\Debug\WebDriver.Support.xml
