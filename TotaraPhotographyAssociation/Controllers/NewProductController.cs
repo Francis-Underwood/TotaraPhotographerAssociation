@@ -7,6 +7,9 @@ using TotaraPhotographyAssociation.Models;
 
 namespace TotaraPhotographyAssociation.Controllers
 {
+    /*
+     * Vincent: This controller list products and details of each item
+     */ 
     public class NewProductController : Controller
     {
         private TotaraPhotoEntities dbCnxt = new TotaraPhotoEntities();

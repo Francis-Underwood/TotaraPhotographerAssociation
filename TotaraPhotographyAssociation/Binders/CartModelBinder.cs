@@ -7,6 +7,11 @@ using TotaraPhotographyAssociation.DomainEntities;
 
 namespace TotaraPhotographyAssociation.Binders
 {
+    /*
+     * Vincent: a customized model binder 
+     * On each request, it automatically grabs Cart object from session,
+     * and bind it to the cart parameter in the controllers execution context 
+     */ 
     public class CartModelBinder : IModelBinder
     {
         private const string keyInSesn = "cart";
@@ -14,13 +19,19 @@ namespace TotaraPhotographyAssociation.Binders
         public object BindModel(ControllerContext ctrlCtxt, ModelBindingContext mCtxt)
         {
             Cart c = null;
-            if (ctrlCtxt.HttpContext.Session != null)   // grab cart from session
+
+            // Vincent: try to grab the cart object from session
+            if (ctrlCtxt.HttpContext.Session != null)   
             {
                 c = (Cart)ctrlCtxt.HttpContext.Session[keyInSesn];
             }
-            if (c == null)  // there is no cart in session, create it then
+
+            // Vincent: there is no cart in session 
+            if (c == null)  
             {
+                // Vincent: create it then
                 c = new Cart();
+                // Vincent: and store it in the session
                 if (ctrlCtxt.HttpContext.Session != null)
                 {
                     ctrlCtxt.HttpContext.Session[keyInSesn] = c;
