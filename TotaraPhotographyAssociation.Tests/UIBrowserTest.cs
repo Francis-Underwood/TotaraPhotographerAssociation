@@ -325,11 +325,13 @@ namespace TotaraPhotographyAssociation.Tests
 
                 //((IJavaScriptExecutor)driverIE).ExecuteScript("tinymce.activeEditor.setContent('<p>Selenium unit test.</p>')");
 
-                // Vincent: get focus on the editor
+                // Vincent: get focus on the editor, by executing JavaScript 
+                // http://stackoverflow.com/questions/15782564/set-focus-on-webelement
                 ((IJavaScriptExecutor)driverIE).ExecuteScript("document.getElementById('tinymce').focus()");
 
+                // Vincent: get the body inside the iframe
                 IWebElement element = driverIE.FindElement(By.Id("tinymce"));
-                //System.Diagnostics.Debug.WriteLine("stoya: " + element.Text);
+                //System.Diagnostics.Debug.WriteLine("stoya: " + element.Text); // TODO: this doesnt work
                 element.SendKeys("selenium unit test.");
 
 
@@ -351,11 +353,8 @@ namespace TotaraPhotographyAssociation.Tests
                 
 
                 // Vincent: click 'Save changes' button, to submit the form
-                //IWebElement saveChangesBtn = driverIE.FindElement(By.CssSelector("#aboutForm button:submit"));
+                //IWebElement saveChangesBtn = driverIE.FindElement(By.CssSelector("#aboutForm button:submit"));    // TODO: this selector works fine with jQuery, but does not work here, and I dont know why 
                 IWebElement saveChangesBtn = driverIE.FindElement(By.Id("saveAboutBtn"));
-
-                
-                //System.Threading.Thread.Sleep(4000);
                 saveChangesBtn.Click();
                 System.Threading.Thread.Sleep(80000);
 
