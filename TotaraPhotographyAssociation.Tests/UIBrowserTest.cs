@@ -280,6 +280,14 @@ namespace TotaraPhotographyAssociation.Tests
                 prdMenuItem.Click();
                 System.Threading.Thread.Sleep(8000);
 
+                // from official doc: http://www.seleniumhq.org/docs/03_webdriver.jsp 
+                // And it does not work at all, it stops the execution.
+                /*
+                var wait = new WebDriverWait(driverIE, TimeSpan.FromSeconds(10));
+                wait.Until(d => d.Title.StartsWith("editabout", StringComparison.OrdinalIgnoreCase));
+                Console.WriteLine("Page title is: " + driverIE.Title);
+                */
+
                 ss = ((ITakesScreenshot)driverIE).GetScreenshot();
                 n = DateTime.Now;
                 fileNamePref = n.Year.ToString() + n.Month.ToString() + n.Day.ToString()
@@ -287,44 +295,45 @@ namespace TotaraPhotographyAssociation.Tests
                             + n.Millisecond.ToString();
                 ss.SaveAsFile(SCREENSHOT_LOCATION + "\\" + fileNamePref + "_go-edit-about.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
 
-                /*
-                driverIE.SwitchTo().Frame("top");
-                IWebElement element = (IWebElement)((IJavaScriptExecutor)driverIE).ExecuteScript("tinymce.activeEditor.setContent('<p>Selenium unit test.</p>')");
-                */
 
                 /*
-                driverIE.SwitchTo().Frame("aboutus_ifr");
                 IWebElement element = driverIE.FindElement(By.CssSelector("body"));
                 element.SendKeys("<p>selenium unit test.</p>");
                 */
 
 
-                //driverIE.SwitchTo().Frame("aboutus_ifr");
                 /*
                  * Vincent: TinyMCE creates an iFrame to host the editing area, and
                  * We need to switch the context to this iFrame first, and run within
                  * the iframe. And after we are finished with our business, we need to
                  * switch back to the default context.
-                 */ 
+                 */
+
+                /**/
 
                 // Vincent: switch to the iframe which holds the tinymce editor
                 IWebElement eleiframe = driverIE.FindElement(By.Id("aboutus_ifr"));
+                // Vincent: output for debugging, but it never works
+                // http://stackoverflow.com/questions/7461808/how-to-console-writeline-from-testmethod
+                //System.Diagnostics.Debug.WriteLine("stoya: " + eleiframe.Text);
                 driverIE.SwitchTo().Frame(eleiframe);
-               
-                //System.Threading.Thread.Sleep(800);
+
+
 
                 //IWebElement element = driverIE.FindElement(By.CssSelector("body"));
                 //element.SendKeys("<p>selenium unit test.</p>");
 
                 //((IJavaScriptExecutor)driverIE).ExecuteScript("tinymce.activeEditor.setContent('<p>Selenium unit test.</p>')");
 
+                // Vincent: get focus on the editor
+                ((IJavaScriptExecutor)driverIE).ExecuteScript("document.getElementById('tinymce').focus()");
+
                 IWebElement element = driverIE.FindElement(By.Id("tinymce"));
+                //System.Diagnostics.Debug.WriteLine("stoya: " + element.Text);
                 element.SendKeys("selenium unit test.");
 
 
                 System.Threading.Thread.Sleep(8000);
-
-                //((IJavaScriptExecutor)driverIE).ExecuteScript("arguments[0].innerHTML = '<h1>selenium test</h1>'", element);
 
 
                 ss = ((ITakesScreenshot)driverIE).GetScreenshot();
@@ -334,9 +343,30 @@ namespace TotaraPhotographyAssociation.Tests
                             + n.Millisecond.ToString();
                 ss.SaveAsFile(SCREENSHOT_LOCATION + "\\" + fileNamePref + "_uptade-aboutus.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
 
-                // Vincent: switch back to the iframe 
+
+                // Vincent: switch back to the iframe, seems not work, the execution stops here 
                 driverIE.SwitchTo().DefaultContent();
 
+
+                
+
+                // Vincent: click 'Save changes' button, to submit the form
+                //IWebElement saveChangesBtn = driverIE.FindElement(By.CssSelector("#aboutForm button:submit"));
+                IWebElement saveChangesBtn = driverIE.FindElement(By.Id("saveAboutBtn"));
+
+                
+                //System.Threading.Thread.Sleep(4000);
+                saveChangesBtn.Click();
+                System.Threading.Thread.Sleep(80000);
+
+                ss = ((ITakesScreenshot)driverIE).GetScreenshot();
+                n = DateTime.Now;
+                fileNamePref = n.Year.ToString() + n.Month.ToString() + n.Day.ToString()
+                            + n.Hour.ToString() + n.Minute.ToString() + n.Second.ToString()
+                            + n.Millisecond.ToString();
+                ss.SaveAsFile(SCREENSHOT_LOCATION + "\\" + fileNamePref + "_save-changes.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+
+                System.Threading.Thread.Sleep(80000);
 
 
             }
