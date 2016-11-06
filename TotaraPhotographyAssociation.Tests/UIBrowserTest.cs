@@ -42,7 +42,7 @@ namespace TotaraPhotographyAssociation.Tests
             driverIE.Quit();
         }
 
-        [Ignore]
+        [Ignore]    // Vincent: to disable this test temporarily
         [TestMethod]
         public void TestShoppingCheckout()
         {
@@ -242,7 +242,8 @@ namespace TotaraPhotographyAssociation.Tests
         /*
          * Vincent: this test simulate a procedure that admin log in and update AboutUs
          * cotent, and this one works fine.
-         */ 
+         */
+        [Ignore]    // Vincent: to disable this test temporarily
         [TestMethod]
         public void TestUpdateAboutUs()
         {
@@ -271,6 +272,9 @@ namespace TotaraPhotographyAssociation.Tests
                 eleInputPwd.Submit();
                 System.Threading.Thread.Sleep(6000);
 
+                /*
+                 * Vincent: Capture the screenshot, and save it as a jpeg.
+                 */
                 Screenshot ss = ((ITakesScreenshot)driverIE).GetScreenshot();
 
                 DateTime n = DateTime.Now;
@@ -327,6 +331,7 @@ namespace TotaraPhotographyAssociation.Tests
 
                 System.Threading.Thread.Sleep(8000);
 
+                // Vin: capture screenshot
                 ss = ((ITakesScreenshot)driverIE).GetScreenshot();
                 n = DateTime.Now;
                 fileNamePref = n.Year.ToString() + n.Month.ToString() + n.Day.ToString()
@@ -351,7 +356,6 @@ namespace TotaraPhotographyAssociation.Tests
                 ss.SaveAsFile(SCREENSHOT_LOCATION + "\\" + fileNamePref + "_save-changes.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
 
                 System.Threading.Thread.Sleep(8000);
-
 
             }
             catch (Exception ex) { }
@@ -382,7 +386,7 @@ namespace TotaraPhotographyAssociation.Tests
 
                 // by Name
                 IWebElement eleInputEmail = driverIE.FindElement(By.Name("Email"));
-                eleInputEmail.SendKeys("aaron@example.com");
+                eleInputEmail.SendKeys("daisy@example.com");
                 System.Threading.Thread.Sleep(4000);
 
                 // by Name
@@ -393,6 +397,9 @@ namespace TotaraPhotographyAssociation.Tests
                 eleInputPwd.Submit();
                 System.Threading.Thread.Sleep(6000);
 
+                /*
+                 * Vincent: Capture the screenshot, and save it as a jpeg.
+                 */
                 Screenshot ss = ((ITakesScreenshot)driverIE).GetScreenshot();
 
                 DateTime n = DateTime.Now;
@@ -414,7 +421,19 @@ namespace TotaraPhotographyAssociation.Tests
                             + n.Millisecond.ToString();
                 ss.SaveAsFile(SCREENSHOT_LOCATION + "\\" + fileNamePref + "_go-resource.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
 
+                // Vincent: get the first pdf download link
+                IWebElement firstPDFLink = driverIE.FindElement(By.CssSelector("#text-page p:nth-child(2) a"));    // TODO: this selector works fine with jQuery, but does not work here, and I dont know why 
+                firstPDFLink.Click();
+                System.Threading.Thread.Sleep(80000);
 
+                ss = ((ITakesScreenshot)driverIE).GetScreenshot();
+                n = DateTime.Now;
+                fileNamePref = n.Year.ToString() + n.Month.ToString() + n.Day.ToString()
+                            + n.Hour.ToString() + n.Minute.ToString() + n.Second.ToString()
+                            + n.Millisecond.ToString();
+                ss.SaveAsFile(SCREENSHOT_LOCATION + "\\" + fileNamePref + "_download-fst-pdf.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+
+                System.Threading.Thread.Sleep(8000);
 
             }
             catch (Exception ex) { }
