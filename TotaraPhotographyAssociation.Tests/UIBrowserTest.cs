@@ -239,7 +239,10 @@ namespace TotaraPhotographyAssociation.Tests
         }
 
 
-
+        /*
+         * Vincent: this test simulate a procedure that admin log in and update AboutUs
+         * cotent, and this one works fine.
+         */ 
         [TestMethod]
         public void TestUpdateAboutUs()
         {
@@ -247,6 +250,9 @@ namespace TotaraPhotographyAssociation.Tests
             {
                 driverIE.Navigate().GoToUrl("http://localhost:42439/");
 
+                /*
+                 * Vincent: first of all, log in with admin account
+                 */
                 // by Id
                 IWebElement eleALogin = driverIE.FindElement(By.Id("loginLink"));
                 eleALogin.Click();
@@ -276,16 +282,17 @@ namespace TotaraPhotographyAssociation.Tests
 
                 // Vincent: get the new product menu, click it
                 IWebElement prdMenuItem = driverIE.FindElement(By.LinkText("EDIT ABOUT"));
-                //IWebElement prdMenuItem = driverIE.FindElement(By.XPath("//a[contains(lower-case(.), \"product\")]")); 
+                //IWebElement prdMenuItem = driverIE.FindElement(By.XPath("//a[contains(lower-case(.), \"product\")]"));    // TODO: does not work
                 prdMenuItem.Click();
                 System.Threading.Thread.Sleep(8000);
 
                 // from official doc: http://www.seleniumhq.org/docs/03_webdriver.jsp 
                 // And it does not work at all, it stops the execution.
+
                 /*
                 var wait = new WebDriverWait(driverIE, TimeSpan.FromSeconds(10));
                 wait.Until(d => d.Title.StartsWith("editabout", StringComparison.OrdinalIgnoreCase));
-                Console.WriteLine("Page title is: " + driverIE.Title);
+                Console.WriteLine("Page title is: " + driverIE.Title); // TODO: does not work
                 */
 
                 ss = ((ITakesScreenshot)driverIE).GetScreenshot();
@@ -294,14 +301,7 @@ namespace TotaraPhotographyAssociation.Tests
                             + n.Hour.ToString() + n.Minute.ToString() + n.Second.ToString()
                             + n.Millisecond.ToString();
                 ss.SaveAsFile(SCREENSHOT_LOCATION + "\\" + fileNamePref + "_go-edit-about.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
-
-
-                /*
-                IWebElement element = driverIE.FindElement(By.CssSelector("body"));
-                element.SendKeys("<p>selenium unit test.</p>");
-                */
-
-
+                
                 /*
                  * Vincent: TinyMCE creates an iFrame to host the editing area, and
                  * We need to switch the context to this iFrame first, and run within
@@ -309,21 +309,12 @@ namespace TotaraPhotographyAssociation.Tests
                  * switch back to the default context.
                  */
 
-                /**/
-
                 // Vincent: switch to the iframe which holds the tinymce editor
                 IWebElement eleiframe = driverIE.FindElement(By.Id("aboutus_ifr"));
                 // Vincent: output for debugging, but it never works
                 // http://stackoverflow.com/questions/7461808/how-to-console-writeline-from-testmethod
                 //System.Diagnostics.Debug.WriteLine("stoya: " + eleiframe.Text);
                 driverIE.SwitchTo().Frame(eleiframe);
-
-
-
-                //IWebElement element = driverIE.FindElement(By.CssSelector("body"));
-                //element.SendKeys("<p>selenium unit test.</p>");
-
-                //((IJavaScriptExecutor)driverIE).ExecuteScript("tinymce.activeEditor.setContent('<p>Selenium unit test.</p>')");
 
                 // Vincent: get focus on the editor, by executing JavaScript 
                 // http://stackoverflow.com/questions/15782564/set-focus-on-webelement
@@ -334,9 +325,7 @@ namespace TotaraPhotographyAssociation.Tests
                 //System.Diagnostics.Debug.WriteLine("stoya: " + element.Text); // TODO: this doesnt work
                 element.SendKeys("selenium unit test.");
 
-
                 System.Threading.Thread.Sleep(8000);
-
 
                 ss = ((ITakesScreenshot)driverIE).GetScreenshot();
                 n = DateTime.Now;
@@ -345,12 +334,8 @@ namespace TotaraPhotographyAssociation.Tests
                             + n.Millisecond.ToString();
                 ss.SaveAsFile(SCREENSHOT_LOCATION + "\\" + fileNamePref + "_uptade-aboutus.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
 
-
                 // Vincent: switch back to the iframe, seems not work, the execution stops here 
                 driverIE.SwitchTo().DefaultContent();
-
-
-                
 
                 // Vincent: click 'Save changes' button, to submit the form
                 //IWebElement saveChangesBtn = driverIE.FindElement(By.CssSelector("#aboutForm button:submit"));    // TODO: this selector works fine with jQuery, but does not work here, and I dont know why 
@@ -365,7 +350,7 @@ namespace TotaraPhotographyAssociation.Tests
                             + n.Millisecond.ToString();
                 ss.SaveAsFile(SCREENSHOT_LOCATION + "\\" + fileNamePref + "_save-changes.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
 
-                System.Threading.Thread.Sleep(80000);
+                System.Threading.Thread.Sleep(8000);
 
 
             }
@@ -375,6 +360,71 @@ namespace TotaraPhotographyAssociation.Tests
                 driverIE.Quit();
             }
         }
+
+
+        /*
+         * Vincent: this test simulate a procedure that a member (either full or associate)
+         * log in, and go to resource page and download one PDF, and this one works fine.
+         */
+        [TestMethod]
+        public void TestDownloadPDF()
+        {
+            try
+            {
+                driverIE.Navigate().GoToUrl("http://localhost:42439/");
+                /*
+                 * Vincent: first of all, log in with associate account account
+                 */
+                // by Id
+                IWebElement eleALogin = driverIE.FindElement(By.Id("loginLink"));
+                eleALogin.Click();
+                System.Threading.Thread.Sleep(2000);
+
+                // by Name
+                IWebElement eleInputEmail = driverIE.FindElement(By.Name("Email"));
+                eleInputEmail.SendKeys("aaron@example.com");
+                System.Threading.Thread.Sleep(4000);
+
+                // by Name
+                IWebElement eleInputPwd = driverIE.FindElement(By.Name("Password"));
+                eleInputPwd.SendKeys("[Freud 1900]");
+                System.Threading.Thread.Sleep(4000);
+
+                eleInputPwd.Submit();
+                System.Threading.Thread.Sleep(6000);
+
+                Screenshot ss = ((ITakesScreenshot)driverIE).GetScreenshot();
+
+                DateTime n = DateTime.Now;
+                string fileNamePref = n.Year.ToString() + n.Month.ToString() + n.Day.ToString()
+                            + n.Hour.ToString() + n.Minute.ToString() + n.Second.ToString()
+                            + n.Millisecond.ToString();
+
+                ss.SaveAsFile(SCREENSHOT_LOCATION + "\\" + fileNamePref + "_login.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+
+                // Vincent: get the resource menu item, click it, going to resource page
+                IWebElement prdMenuItem = driverIE.FindElement(By.LinkText("RESOURCE"));
+                prdMenuItem.Click();
+                System.Threading.Thread.Sleep(8000);
+
+                ss = ((ITakesScreenshot)driverIE).GetScreenshot();
+                n = DateTime.Now;
+                fileNamePref = n.Year.ToString() + n.Month.ToString() + n.Day.ToString()
+                            + n.Hour.ToString() + n.Minute.ToString() + n.Second.ToString()
+                            + n.Millisecond.ToString();
+                ss.SaveAsFile(SCREENSHOT_LOCATION + "\\" + fileNamePref + "_go-resource.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+
+
+
+            }
+            catch (Exception ex) { }
+            finally
+            {
+                driverIE.Quit();
+            }
+        }
+
+
 
     }
 
