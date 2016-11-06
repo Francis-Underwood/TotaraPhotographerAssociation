@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<parameters>
-  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="Data Source=ANDROID-STUDIO\SQLEXPRE2014VINC;Initial Catalog=TotaraPhoto;Persist Security Info=True;User ID=MIT502712;Password=[Freud 1900]" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="D:\\workcomplex\\aspnet\\TotaraPhotographyAssociation\\TotaraPhotographyAssociation\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
-  </parameter>
-  <parameter name="TotaraPhotoEntities-Web.config Connection String" description="TotaraPhotoEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.TotaraPhotoModel.csdl|res://*/Models.TotaraPhotoModel.ssdl|res://*/Models.TotaraPhotoModel.msl;provider=System.Data.SqlClient;provider connection string='data source=ANDROID-STUDIO\SQLEXPRE2014VINC;initial catalog=TotaraPhoto;persist security info=True;user id=MIT502712;password=&quot;[Freud 1900]&quot;;MultipleActiveResultSets=True;App=EntityFramework'" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="D:\\workcomplex\\aspnet\\TotaraPhotographyAssociation\\TotaraPhotographyAssociation\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='TotaraPhotoEntities']/@connectionString" />
-  </parameter>
-</parameters>

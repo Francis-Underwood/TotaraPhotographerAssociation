@@ -315,9 +315,6 @@ namespace TotaraPhotographyAssociation.Tests
 
                 // Vincent: switch to the iframe which holds the tinymce editor
                 IWebElement eleiframe = driverIE.FindElement(By.Id("aboutus_ifr"));
-                // Vincent: output for debugging, but it never works
-                // http://stackoverflow.com/questions/7461808/how-to-console-writeline-from-testmethod
-                //System.Diagnostics.Debug.WriteLine("stoya: " + eleiframe.Text);
                 driverIE.SwitchTo().Frame(eleiframe);
 
                 // Vincent: get focus on the editor, by executing JavaScript 
@@ -326,7 +323,6 @@ namespace TotaraPhotographyAssociation.Tests
 
                 // Vincent: get the body inside the iframe
                 IWebElement element = driverIE.FindElement(By.Id("tinymce"));
-                //System.Diagnostics.Debug.WriteLine("stoya: " + element.Text); // TODO: this doesnt work
                 element.SendKeys("selenium unit test.");
 
                 System.Threading.Thread.Sleep(8000);
