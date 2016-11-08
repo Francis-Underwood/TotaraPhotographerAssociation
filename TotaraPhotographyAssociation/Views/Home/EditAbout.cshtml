@@ -9,7 +9,7 @@
 
     <h2>Edit About</h2>
 
-    @*Vince: in case the user arrives here second time, it means he has submitted previously, output this alert*@
+    @*Vince 2016-11-1: in case the user arrives here second time, it means he has submitted previously, output this alert*@
     @if (IsPost)
     {
         <div class="alert alert-info">
@@ -17,7 +17,7 @@
         </div>
     }
 
-    @*Vincent: inspired by http://stackoverflow.com/questions/33617282/how-to-upload-and-inject-image-to-tinymce-4-using-asp-net-mvc*@
+    @*Vincent 2016-11-1: inspired by http://stackoverflow.com/questions/33617282/how-to-upload-and-inject-image-to-tinymce-4-using-asp-net-mvc*@
 
     @*Vince: this invisible iframe is used to execute the JavaScript returned from server.*@
     <iframe id="form_target" name="form_target" style="display:none"></iframe>

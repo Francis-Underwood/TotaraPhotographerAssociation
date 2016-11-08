@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f1ae1ebec905468d95f2f927791f9a5b" Name="Diagram1">
+        <EntityTypeShape EntityType="TotaraPhotoModel.AspNetUser" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TotaraPhotoModel.Product" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TotaraPhotoModel.OrderDetail" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="TotaraPhotoModel.CustomerOrder" Width="1.5" PointX="3.375" PointY="4.75" />
+        <EntityTypeShape EntityType="TotaraPhotoModel.SysParam" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="TotaraPhotoModel.Resource" Width="1.5" PointX="5.375" PointY="4.75" />
+        <EntityTypeShape EntityType="TotaraPhotoModel.AspNetRole" Width="1.5" PointX="7.75" PointY="5.75" />
+        <EntityTypeShape EntityType="TotaraPhotoModel.AspNetUserRole" Width="1.5" PointX="7.625" PointY="2.375" />
+        <AssociationConnector Association="TotaraPhotoModel.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" />
+        <AssociationConnector Association="TotaraPhotoModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

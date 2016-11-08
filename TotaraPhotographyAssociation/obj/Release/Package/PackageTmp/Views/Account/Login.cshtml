@@ -1,0 +1,79 @@
+﻿@using TotaraPhotographyAssociation.Models
+
+@model LoginViewModel
+@{
+    if (Request.IsAuthenticated)
+    {
+        ViewBag.Title = "Unauthorized";
+    }
+    else
+    {
+        ViewBag.Title = "Log in";
+    }
+}
+
+<div class="col-md-6 col-sm-offset-3">
+    <div class="box">
+        <h1>@ViewBag.Title</h1>
+
+        @if (!Request.IsAuthenticated)
+        {
+
+
+            <section style="min-height: 448px;">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                {
+
+                    @Html.AntiForgeryToken()
+
+                    <hr />
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                    <div class="form-group">
+
+                        @Html.LabelFor(m => m.Email)
+
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+
+
+                    </div>
+
+                    <div class="form-group">
+
+                        @Html.LabelFor(m => m.Password)
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="text-center">
+                        <input type="submit" value="Log in" class="btn btn-primary" />
+                    </div>
+
+
+                }
+            </section>
+        }
+        else
+        {
+            <div class="row" id="error-page" style="min-height: 448px;">
+                
+
+                        <p>We are sorry - you are not authorized to access this page.</p>
+                        
+                        <p class="buttons">
+                            <a href="@Url.Action("Index", "Home")" class="btn btn-primary"><i class="fa fa-home"></i> Go to Homepage</a>
+                        </p>
+                   
+            </div>
+
+
+
+         }
+
+</div>
+</div>
+

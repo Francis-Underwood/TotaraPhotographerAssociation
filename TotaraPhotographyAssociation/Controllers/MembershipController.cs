@@ -54,7 +54,9 @@ namespace TotaraPhotographyAssociation.Controllers
         }
 
 
-
+        /*
+         * Vincent: redirect to Paypal, passing the transaction details
+         */
         [HttpPost]
         [Authorize(Roles = "full, associate, expired, inactive")]
         public ActionResult Subscribe(string plan, PurchaseMembershipViewModel vmodel)
@@ -100,7 +102,9 @@ namespace TotaraPhotographyAssociation.Controllers
             return View();
         }
         
-
+        /*
+         * Vincent: this method is callback method then Paypal redirects back
+         */ 
         [Authorize(Roles = "full, associate, expired, inactive")]
         public ActionResult PaymentSuccessful(string paymentId, string token, string PayerID)
         {
@@ -162,7 +166,14 @@ namespace TotaraPhotographyAssociation.Controllers
             return View();
         }
 
-        // Vince: this action is triggered regularly, to update the membership expiry data
+        /*
+         * Vincent: this action does nothing but invoke a stored procedure in SQL Server,
+         * which goes through the user data in db, check if ones membership has expired, update
+         * the record accordingly.
+         * it is meant to be triggered by scheduled job on Azure.
+         * Azure jobs are configured as running regularly, and automatically.
+         */
+        // Vince: , to update the membership expiry data
         public string ExpirizeMembership()
         {
             try
