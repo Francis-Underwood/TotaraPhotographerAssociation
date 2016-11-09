@@ -15,10 +15,22 @@ namespace TotaraPhotographyAssociation.Tests
     [TestClass]
     public class UIBrowserTest
     {
-        // Vincent 2016-11-4: the chrome driver doesn't work, and the 64-bit IE driver works pretty slow
-        // for typing in text box in the pages. So now I changed to 32-bit IE driver
-        private const string SCREENSHOT_LOCATION = @"D:\workcomplex\SeleniumShots";
+        /* 
+         * Vincent 2016-11-4: the chrome driver doesn't work, and the 64-bit IE driver 
+         * works pretty slow for typing in text box in the pages.
+         * So now I changed to 32-bit IE driver.
+         * Vincent 2016-11-9: In order to get it work, you need to etract the driver files 
+         * from SeleniumDrivers.7z, and change this path pointing to the path of 
+         * the driver files on your disk 
+         */
         private const string IE_DRIVER_PATH = @"D:\workcomplex\SeleniumDrivers";
+
+        /*
+         * Vincent 2016-11-9: you can either change this path to fit your situation,
+         * or commont out all the lines that capture screenshots
+         */
+        private const string SCREENSHOT_LOCATION = @"D:\workcomplex\SeleniumShots"; 
+        
 
         private static IWebDriver driverChrome;
         private static IWebDriver driverIE;
@@ -47,7 +59,7 @@ namespace TotaraPhotographyAssociation.Tests
             driverIE.Quit();
         }
 
-            // Vincent 2016-11-4: to disable this test temporarily
+        [Ignore]    // Vincent 2016-11-4: to disable this test temporarily
         [TestMethod]
         public void TestShoppingCheckout()
         {
@@ -232,7 +244,6 @@ namespace TotaraPhotographyAssociation.Tests
                             + n.Millisecond.ToString();
                 ss.SaveAsFile(SCREENSHOT_LOCATION + "\\" + fileNamePref + "_logged-in-Paypal.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
 
-/**/
                 // Vincent 2016-11-4: authorize the payment
                 IWebElement continueBtn = driverIE.FindElement(By.Id("confirmButtonTop"));
                 continueBtn.Click();
@@ -250,12 +261,11 @@ namespace TotaraPhotographyAssociation.Tests
             catch (Exception ex) {
                 Console.WriteLine("L: " + ex.StackTrace);
                 Console.WriteLine("L: " + ex.Message);
-                Debug.WriteLine("L: " + ex.StackTrace);
-                Trace.WriteLine("L: " + ex.StackTrace);
+                //Debug.WriteLine("L: " + ex.StackTrace);
+                //Trace.WriteLine("L: " + ex.StackTrace);
             }
             finally
-            {
-               
+            {               
                 driverIE.Quit();
             }
         }
@@ -304,13 +314,13 @@ namespace TotaraPhotographyAssociation.Tests
                             + n.Hour.ToString() + n.Minute.ToString() + n.Second.ToString()
                             + n.Millisecond.ToString();
 
-                ss.SaveAsFile(SCREENSHOT_LOCATION + "\\" + fileNamePref + "_login.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                ss.SaveAsFile(SCREENSHOT_LOCATION + "\\TestUpdateAboutUs_" + fileNamePref + "_Step-01.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
 
                 // Vincent 2016-11-6: get the new product menu, click it
                 IWebElement prdMenuItem = driverIE.FindElement(By.LinkText("EDIT ABOUT"));
                 //IWebElement prdMenuItem = driverIE.FindElement(By.XPath("//a[contains(lower-case(.), \"product\")]"));    // TODO: does not work
                 prdMenuItem.Click();
-                System.Threading.Thread.Sleep(8000);
+                System.Threading.Thread.Sleep(6000);
 
                 // from official doc: http://www.seleniumhq.org/docs/03_webdriver.jsp 
                 // And it does not work at all, it stops the execution.
@@ -326,7 +336,7 @@ namespace TotaraPhotographyAssociation.Tests
                 fileNamePref = n.Year.ToString() + n.Month.ToString() + n.Day.ToString()
                             + n.Hour.ToString() + n.Minute.ToString() + n.Second.ToString()
                             + n.Millisecond.ToString();
-                ss.SaveAsFile(SCREENSHOT_LOCATION + "\\" + fileNamePref + "_go-edit-about.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                ss.SaveAsFile(SCREENSHOT_LOCATION + "\\TestUpdateAboutUs_" + fileNamePref + "_Step-02.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
 
                 /*
                  * Vincent 2016-11-6: TinyMCE creates an iFrame to host the editing area, and
@@ -355,7 +365,7 @@ namespace TotaraPhotographyAssociation.Tests
                 fileNamePref = n.Year.ToString() + n.Month.ToString() + n.Day.ToString()
                             + n.Hour.ToString() + n.Minute.ToString() + n.Second.ToString()
                             + n.Millisecond.ToString();
-                ss.SaveAsFile(SCREENSHOT_LOCATION + "\\" + fileNamePref + "_uptade-aboutus.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                ss.SaveAsFile(SCREENSHOT_LOCATION + "\\TestUpdateAboutUs_" + fileNamePref + "_Step-03.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
 
                 // Vincent 2016-11-6: switch back to the iframe, seems not work, the execution stops here 
                 driverIE.SwitchTo().DefaultContent();
@@ -364,16 +374,16 @@ namespace TotaraPhotographyAssociation.Tests
                 //IWebElement saveChangesBtn = driverIE.FindElement(By.CssSelector("#aboutForm button:submit"));    // TODO: this selector works fine with jQuery, but does not work here, and I dont know why 
                 IWebElement saveChangesBtn = driverIE.FindElement(By.Id("saveAboutBtn"));
                 saveChangesBtn.Click();
-                System.Threading.Thread.Sleep(80000);
+                System.Threading.Thread.Sleep(8000);
 
                 ss = ((ITakesScreenshot)driverIE).GetScreenshot();
                 n = DateTime.Now;
                 fileNamePref = n.Year.ToString() + n.Month.ToString() + n.Day.ToString()
                             + n.Hour.ToString() + n.Minute.ToString() + n.Second.ToString()
                             + n.Millisecond.ToString();
-                ss.SaveAsFile(SCREENSHOT_LOCATION + "\\" + fileNamePref + "_save-changes.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                ss.SaveAsFile(SCREENSHOT_LOCATION + "\\TestUpdateAboutUs_" + fileNamePref + "_Step-04.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
 
-                System.Threading.Thread.Sleep(8000);
+                System.Threading.Thread.Sleep(2000);
 
             }
             catch (Exception ex) { }
@@ -388,7 +398,7 @@ namespace TotaraPhotographyAssociation.Tests
          * Vincent 2016-11-6: this test simulate a procedure that a member (either full or associate)
          * log in, and go to resource page and download one PDF, and this one works fine.
          */
-        [Ignore]
+        
         [TestMethod]
         public void TestDownloadPDF()
         {
@@ -413,12 +423,9 @@ namespace TotaraPhotographyAssociation.Tests
                 eleInputPwd.SendKeys("[Freud 1900]");
                 System.Threading.Thread.Sleep(4000);
 
-                eleInputPwd.Submit();
-                System.Threading.Thread.Sleep(6000);
-
                 /*
-                 * Vincent 2016-11-6: Capture the screenshot, and save it as a jpeg.
-                 */
+                   * Vincent 2016-11-6: Capture the screenshot, and save it as a jpeg.
+                   */
                 Screenshot ss = ((ITakesScreenshot)driverIE).GetScreenshot();
 
                 DateTime n = DateTime.Now;
@@ -426,7 +433,19 @@ namespace TotaraPhotographyAssociation.Tests
                             + n.Hour.ToString() + n.Minute.ToString() + n.Second.ToString()
                             + n.Millisecond.ToString();
 
-                ss.SaveAsFile(SCREENSHOT_LOCATION + "\\" + fileNamePref + "_login.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                ss.SaveAsFile(SCREENSHOT_LOCATION + "\\TestDownloadPDF" + fileNamePref + "_Step-01.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+
+                eleInputPwd.Submit();
+                System.Threading.Thread.Sleep(6000);
+
+
+                ss = ((ITakesScreenshot)driverIE).GetScreenshot();
+                n = DateTime.Now;
+                fileNamePref = n.Year.ToString() + n.Month.ToString() + n.Day.ToString()
+                            + n.Hour.ToString() + n.Minute.ToString() + n.Second.ToString()
+                            + n.Millisecond.ToString();
+
+                ss.SaveAsFile(SCREENSHOT_LOCATION + "\\TestDownloadPDF" + fileNamePref + "_Step-02.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
                 Console.WriteLine("saving login screenshot");   // Vince 20161107: works
 
                 // Vincent 2016-11-6: get the resource menu item, click it, going to resource page
@@ -439,23 +458,27 @@ namespace TotaraPhotographyAssociation.Tests
                 fileNamePref = n.Year.ToString() + n.Month.ToString() + n.Day.ToString()
                             + n.Hour.ToString() + n.Minute.ToString() + n.Second.ToString()
                             + n.Millisecond.ToString();
-                ss.SaveAsFile(SCREENSHOT_LOCATION + "\\" + fileNamePref + "_go-resource.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                ss.SaveAsFile(SCREENSHOT_LOCATION + "\\TestDownloadPDF" + fileNamePref + "_Step-03.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
                 Trace.WriteLine("saving resource screenshot");  // Vince 20161107: works
 
                 // Vincent 2016-11-6: get the first pdf download link
                 IWebElement firstPDFLink = driverIE.FindElement(By.CssSelector("#text-page p:nth-child(2) a"));    // TODO: this selector works fine with jQuery, but does not work here, and I dont know why 
                 firstPDFLink.Click();
-                System.Threading.Thread.Sleep(80000);
+                System.Threading.Thread.Sleep(8000);
 
+                /*
+                 * Vincent 20161109: this fails, propably because clicking the doenload link
+                 * trigers a popup dialog
+                 */ 
                 ss = ((ITakesScreenshot)driverIE).GetScreenshot();
                 n = DateTime.Now;
                 fileNamePref = n.Year.ToString() + n.Month.ToString() + n.Day.ToString()
                             + n.Hour.ToString() + n.Minute.ToString() + n.Second.ToString()
                             + n.Millisecond.ToString();
-                ss.SaveAsFile(SCREENSHOT_LOCATION + "\\" + fileNamePref + "_download-fst-pdf.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                ss.SaveAsFile(SCREENSHOT_LOCATION + "\\TestDownloadPDF" + fileNamePref + "_Step-04.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
                 //Debug.WriteLine("saving download pdf screenshot");  // does not work because it is not in debug mode
 
-                System.Threading.Thread.Sleep(8000);
+                System.Threading.Thread.Sleep(2000);
                 //TestContext.WriteLine("test ends"); // does not work for unknown reason
 
             }
